@@ -3,6 +3,7 @@ import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
 import Start from '../Start/Start';
+import Game from '../Game/Game';
 import Footer from '../Footer/Footer';
 
 class App extends Component {
@@ -49,36 +50,7 @@ class App extends Component {
           }
 
           {!this.state.isHome && 
-          <section className='quote-container'>
-              <h2 className='headline'>QUOTE:</h2>
-              <h3>{this.state.quotes[0].quote}</h3>
-              <section className='cards-container'>
-                <article className='card hover-states'>
-                  <img 
-                    className='card-image' 
-                    src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'
-                    alt={this.state.characters[0]}
-                  />
-                  <h4>{this.state.characters[0]}</h4>
-                </article>
-                <article className='card hover-states'>
-                  <img 
-                    className='card-image' 
-                    src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'
-                    alt={this.state.characters[1]}
-                  />
-                  <h4>{this.state.characters[1]}</h4>
-                </article>
-                <article className='card hover-states'>
-                  <img 
-                    className='card-image' 
-                    src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'
-                    alt={this.state.characters[2]}
-                  />
-                  <h4>{this.state.characters[2]}</h4>
-                </article>
-              </section>
-            </section>
+            <Game quote={this.state.quotes[0]}/>
           }
         </main>
         <Footer />
