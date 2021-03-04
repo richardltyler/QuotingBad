@@ -60,19 +60,19 @@ class App extends Component {
                   <img 
                     className='card-image' 
                     src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'></img>
-                  <h3>Heisenberg</h3>
+                  <h3>{this.state.characters[0]}</h3>
                 </article>
                 <article className='card hover-states'>
                   <img 
                     className='card-image' 
                     src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'></img>
-                  <h3>Heisenberg</h3>
+                  <h3>{this.state.characters[1]}</h3>
                 </article>
                 <article className='card hover-states'>
                   <img 
                     className='card-image' 
                     src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'></img>
-                  <h3>Heisenberg</h3>
+                  <h3>{this.state.characters[2]}</h3>
                 </article>
               </section>
             </section>
