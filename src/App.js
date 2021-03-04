@@ -1,9 +1,15 @@
+import { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    null
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+  
+  render() {
+    return null;
+  }
 }
 
 export default App;
