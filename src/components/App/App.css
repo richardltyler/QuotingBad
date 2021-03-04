@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre');
+
+.App {
+  color: #15493C;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 15fr 1fr;
+  grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+}
+
+header {
+  grid-area: header;
+} 
+
+main {
+  grid-area: main
+}
+
+footer {
+  grid-area: footer;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Averia Serif Libre';
+  text-align: center;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+.rules-container {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.knock-button {
+  border: none;
+  border-radius: 3px;
+  background-image: linear-gradient(#106924, #15493C);
+  height: 40px;
+  width: 180px;
+  color: white;
+  font-size: 25px;
+  font-family: 'Averia Serif Libre';
+  transition: all .2s ease-in-out; 
+}
+
+.knock-button:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
