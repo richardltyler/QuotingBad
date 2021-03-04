@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre');
 
 .App {
+  color: #15493C;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;

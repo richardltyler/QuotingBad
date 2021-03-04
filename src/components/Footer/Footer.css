@@ -1,3 +1,10 @@
 .footer {
-  
+  display: flex;
+  flex-direction: row;
+  margin-left: 2.5rem;
+  color: #15493C;
+}
+
+.footer:visited {
+  color: #106924;
 }
