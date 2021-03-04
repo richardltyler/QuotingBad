@@ -2,6 +2,7 @@ import { Component } from 'react';
 import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
+import Start from '../Start/Start';
 import Footer from '../Footer/Footer';
 
 class App extends Component {
@@ -44,12 +45,7 @@ class App extends Component {
         <Header />
         <main className="main">
           {this.state.isHome && 
-            <section  className="rules-container">
-              <h2>RULES</h2>
-              <h3>You will be given a quote from a character in Breaking Bad and three characters.</h3>
-              <h4>Choose the character that you think authored the quote.</h4> 
-              <button onClick={() => this.showQuote()} className ="knock-button hover-states">KNOCK</button>
-            </section>
+            <Start />
           }
 
           {!this.state.isHome && 
