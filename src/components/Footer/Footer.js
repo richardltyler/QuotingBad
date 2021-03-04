@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className='footer'>
-      <a href=''>About</a>
+      <a href='https://youtu.be/Jx8V_ogFz2o'>About</a>
     </footer>
   )
 }
