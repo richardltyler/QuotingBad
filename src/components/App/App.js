@@ -15,7 +15,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     httpRequests.getAllQuotes()
       .then(quotes => {
         this.setState({ quotes: quotes });
@@ -23,7 +23,7 @@ class App extends Component {
       });
   }
 
-  getCharacters(quotes) {
+  getCharacters = (quotes) => {
     const characters = quotes.reduce((acc, quote) => {
       if (!acc.includes(quote.author)) {
         acc.push(quote.author);
@@ -35,8 +35,8 @@ class App extends Component {
     this.setState({ characters: characters });
   }
 
-  showQuote() {
-    this.setState({isHome: false });
+  showQuote = () => {
+    this.setState({ isHome: false });
   }
   
   render() {
@@ -45,7 +45,7 @@ class App extends Component {
         <Header />
         <main className="main">
           {this.state.isHome && 
-            <Start />
+            <Start showQuote={this.showQuote}/>
           }
 
           {!this.state.isHome && 
