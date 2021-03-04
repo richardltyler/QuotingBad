@@ -13,19 +13,7 @@
 
 header {
   grid-area: header;
-  color: #15493C;
-  font-family: 'Averia Serif Libre';
-  border-bottom: 3px solid #15493C;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-block {
-  border: 1px solid #15493C;
-  background: #15493C;
-  color: white;
-}
+} 
 
 main {
   grid-area: main
