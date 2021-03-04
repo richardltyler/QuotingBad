@@ -50,7 +50,7 @@ class App extends Component {
 
           {!this.state.isHome && 
           <section className='quote-container'>
-              <h2>QUOTE:</h2>
+              <h2 className='headline'>QUOTE:</h2>
               <h3>{this.state.quotes[0].quote}</h3>
               <section className='cards-container'>
                 <article className='card hover-states'>

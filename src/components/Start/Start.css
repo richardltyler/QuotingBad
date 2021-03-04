@@ -1,0 +1,16 @@
+.rules-container {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.knock-button {
+  border: none;
+  border-radius: 3px;
+  background-image: linear-gradient(#106924, #15493C);
+  height: 40px;
+  width: 180px;
+  color: white;
+  font-size: 25px;
+  font-family: 'Averia Serif Libre';
+  transition: all .2s ease-in-out; 
+}
