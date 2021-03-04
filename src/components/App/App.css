@@ -23,3 +23,38 @@ main {
 footer {
   grid-area: footer;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Averia Serif Libre';
+  text-align: center;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+.rules-container {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.knock-button {
+  border: none;
+  color: white;
+  background: #15493C;
+  border-radius: 3px;
+  height: 40px;
+  width: 250px;
+  font-size: 20px;
+  font-family: 'Averia Serif Libre';
+  transition: all .2s ease-in-out; 
+}
+
+.knock-button:hover {
+  cursor: pointer;
+  background: #106924;
+  transform: scale(1.03);
+}
