@@ -8,7 +8,21 @@ class App extends Component {
   }
   
   render() {
-    return null;
+    return (
+      <div className="App">
+        <header className="header">
+          <section className="logo">
+            <h1>
+              <span className='logo-block'>Q</span>uoting<br></br>
+              <span className='logo-block'>Ba</span>d
+            </h1>
+          </section>
+        </header>
+        <main>
+        </main>
+        <footer></footer>
+      </div>
+    )
   }
 }
 

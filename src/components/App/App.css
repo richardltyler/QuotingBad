@@ -1,38 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre');
+
 .App {
-  text-align: center;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 15fr 1fr;
+  grid-template-areas: 
+    "header"
+    "main"
+    "footer";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
+  grid-area: header;
+  color: #15493C;
+  font-family: 'Averia Serif Libre';
+  border-bottom: 3px solid #15493C;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.logo-block {
+  border: 1px solid #15493C;
+  background: #15493C;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  grid-area: main
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer {
+  grid-area: footer;
 }
