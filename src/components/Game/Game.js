@@ -46,8 +46,6 @@ class Game extends Component {
     const randomQuote = quotes[this.getRandomIndex(quotes)];
 
     this.setState({ currentQuote: randomQuote });
-    // console.log(2, this.state.currentQuote)
-    // console.log(randomQuote)
   }
 
   render() {
@@ -55,8 +53,7 @@ class Game extends Component {
       <section className='quote-container'>
         <h2 className='headline'>QUOTE:</h2>
         <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
-        {/* {this.state.characters &&  */}
-          <Characters characters={this.createCharacterOptions()}/>
+        <Characters characters={this.createCharacterOptions()}/>
       </section>
     )
   }

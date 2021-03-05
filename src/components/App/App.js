@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Route } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
@@ -51,19 +51,10 @@ class App extends Component {
         <Header goHome={this.goHome}/>
         <main className="main">
           {this.state.isHome && 
-          <Route 
-            path='/' 
-            render={() => <Start showQuote={this.showQuote} />}
-          />
-          }
+           <Start showQuote={this.showQuote} />}
 
           {!this.state.isHome && 
-          <Route 
-            path='/game'
-            
-            render={() => <Game  quotes={this.state.quotes} characters={this.state.characters} />}
-          />
-          }
+            <Game  quotes={this.state.quotes} characters={this.state.characters} />}
         </main>
         <Footer />
       </div>
