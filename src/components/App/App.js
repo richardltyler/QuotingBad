@@ -23,10 +23,6 @@ class App extends Component {
       });
   }
 
-  getRandomIndex = (array) => {
-    return Math.floor(Math.random() * array.length);
-  }
-
   getRandomQuote
 
   showQuote = () => {

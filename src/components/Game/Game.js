@@ -6,7 +6,7 @@ class Game extends Component {
     super(props);
     this.state = {
       quotes: this.props.quotes,
-      currentQuote: this.props.quotes[0],
+      currentQuote: {},
       characters: [],
       pastQuotes: [],
       correctAnswers: 0
@@ -15,6 +15,18 @@ class Game extends Component {
 
   componentDidMount = () => {
     this.getCharacters();
+    this.getQuote();
+  }
+
+  getRandomIndex = (array) => {
+    return Math.floor(Math.random() * array.length);
+  }
+
+  getQuote = () => {
+    const quotes = this.state.quotes;
+    const randomQuote = quotes[this.getRandomIndex(quotes)];
+
+    this.setState({ currentQuote: randomQuote });
   }
 
   getCharacters = () => {
