@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Start.css';
 
 const Start = (props) => {
-  const { showQuote } = props;
+  const { startGame, toggleHome } = props;
 
   return (
     <section  className="rules-container">
@@ -12,9 +12,13 @@ const Start = (props) => {
       <p>Choose the character that you think authored the quote</p> 
       <h3>Be the one who knocks to start a game</h3>
       
-      <Link to='/game'>
-        <button onClick={() => showQuote()} className ="knock-button hover-states">KNOCK</button>
-      </Link>
+      {/* <Link to='/game'> */}
+        <button onClick={() => {
+          startGame();
+          toggleHome();
+        }} 
+        className ="knock-button hover-states">KNOCK</button>
+      {/* </Link> */}
     </section>
   )
 }

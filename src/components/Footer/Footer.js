@@ -1,14 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
-const Footer = ({ showQuote }) => {
+const Footer = ({ endGame, goHome }) => {
   return (
     <footer className='footer'>
-      <NavLink 
+      <Link 
         to='/about'
-        onClick={() => showQuote()}
-        >About</NavLink>
+        onClick={() => {
+          endGame();
+          goHome();
+        }}
+        >About</Link>
     </footer>
   )
 }

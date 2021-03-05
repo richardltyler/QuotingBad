@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       quotes: [],
       characters: [],
-      isHome: true
+      isHome: true,
+      gameOn: false,
     };
   }
 
@@ -84,8 +85,16 @@ class App extends Component {
     return newName;
   }
 
-  showQuote = () => {
-    this.setState({ isHome: false });
+  startGame = () => {
+    this.setState({ gameOn: true });
+  }
+  
+  endGame = () => {
+    this.setState({ gameOn: false });
+  }
+
+  toggleHome = () => {
+    this.setState({ isHome: !this.state.isHome });
   }
 
   goHome = () => {
@@ -95,30 +104,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header goHome={this.goHome}/>
+        <Header toggleHome={this.toggleHome} endGame={this.endGame}/>
         <main className="main">
-          {!this.state.isHome && 
-            <Route 
-            path='/game'
-            render={() => <Game quotes={this.state.quotes} characters={this.state.characters} />}
-            />
-          }
 
-          {/* {!this.state.isHome &&  */}
             <Route 
               path='/about'
               render={() => <About />}
-            />
-          {/* // } */}
+              />
 
-          {/* {this.state.isHome &&  */}
-            <Route 
-              exact path='/'
-              render={() => <Start showQuote={this.showQuote}/>}
-            />
-          {/* // } */}
+              {!this.state.isHome && this.state.gameOn &&
+                <Game quotes={this.state.quotes} characters={this.state.characters} />
+              }
+
+          {this.state.isHome && !this.gameOn &&
+            <Start startGame={this.startGame} toggleHome={this.toggleHome}/>
+          }
         </main>
-        <Footer showQuote={this.showQuote}/>
+        <Footer goHome={this.goHome} endGame={this.endGame}/>
       </div>
     )
   }

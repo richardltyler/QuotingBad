@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ goHome }) => {
+const Header = ({ endGame, toggleHome }) => {
 
   return (
     <header className="header">
@@ -10,11 +10,14 @@ const Header = ({ goHome }) => {
           <span className='logo-block'>Qu</span>oting<br></br>
           <span className='logo-block'>Ba</span>d
         </h1>
-        <NavLink 
+        <Link 
           className='home-link'
-          onClick={() => goHome()} 
+          onClick={() => {
+            endGame();
+            toggleHome();
+          }}
           to='/'
-        >Home</NavLink>
+        >Home</ Link>
     </header>
   )
 }
