@@ -2,9 +2,17 @@ import React from 'react';
 import Card from '../Card/Card';
 import './Characters.css';
 
-const Characters = ({ characters }) => {
-  console.log(characters)
-  const characterCards = characters.map((char, i) => {
+const Characters = ({ characters, correctAnswer, getRandomIndex }) => {
+  const correctAuthor = characters.find(char => char.character === correctAnswer);
+  const wrongAnswers = characters.filter(char => char.character !== correctAnswer);
+  const wrongAnswer1 = wrongAnswers[getRandomIndex(wrongAnswers)];
+  const wrongAnswer2 = wrongAnswers[getRandomIndex(wrongAnswers, wrongAnswer1)];
+
+  const options = [wrongAnswer1, wrongAnswer2];
+  options.splice(getRandomIndex[options], 0, correctAuthor);
+
+  console.log(options)
+  const characterCards = options.map((char, i) => {
     return <Card key={i} character={char} />;
   });
 

@@ -8,6 +8,7 @@ class Game extends Component {
     this.state = {
       quotes: this.props.quotes,
       currentQuote: {},
+      currentOptions: [],
       characters: this.props.characters,
       pastQuotes: [],
       correctAnswers: 0
@@ -16,28 +17,42 @@ class Game extends Component {
 
   componentDidMount = () => {
     this.getQuote();
-    // this.createCharacterOptions();
+      // this.createCharacterOptions();
   }
+
+  // componentDidUpdate = () => {
+  //   this.createCharacterOptions();
+  //   console.log(2, this.state.currentQuote)
+  // }
 
   getRandomIndex(arr) {
     return Math.floor(Math.random() * arr.length);
   }
 
   createCharacterOptions = () => {
-    const correctAnswer = this.state.currentQuote.author;
+    const correctAnswer = this.getCorrectAnswer();
     const wrongAnswer1 = this.getWrongAnswer(correctAnswer);
-    const wrongAnswer2 = this.getWrongAnswer(correctAnswer);
+    const wrongAnswer2 = this.getWrongAnswer(correctAnswer, wrongAnswer1);
 
+    console.log(correctAnswer)
     const answers = [wrongAnswer1, wrongAnswer2];
     const answersIndex = this.getRandomIndex(answers);
 
     answers.splice(answersIndex, 0, correctAnswer);
 
-    return answers;
+    this.setState({ currentOptions: answers });
   }
 
-  getWrongAnswer = (correctAnswer) => {
-    const wrongAnswers = this.state.characters.filter(char => char.character !== correctAnswer)
+  // getCorrectAnswer = () => {
+  //   console.log(this.state.currentQuote)
+  //   const correctAuthor = this.state.characters.find(char => char.character === this.state.currentQuote.author);
+
+  //   return correctAuthor.character;
+  // }
+
+  getWrongAnswer = (correctAnswer, wrongAnswer) => {
+    const wrongAnswers = this.state.characters.filter(char => char.character !== correctAnswer && char.character !== wrongAnswer);
+
   
     return wrongAnswers[this.getRandomIndex(wrongAnswers)].character;
   }
@@ -54,7 +69,9 @@ class Game extends Component {
       <section className='quote-container'>
         <h2 className='headline'>QUOTE:</h2>
         <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
-        <Characters characters={this.createCharacterOptions()}/>
+        {this.state.currentOptions && 
+          <Characters getRandomIndex={this.getRandomIndex} correctAnswer={this.state.currentQuote.author} characters={this.state.characters}/>
+        }
       </section>
     )
   }

@@ -33,7 +33,9 @@ class App extends Component {
       httpRequests.getCharacters(formattedName)
         .then(image => newChar.img = image)
 
-      newChar.character = char;
+      newChar.character = formattedName.split('+').join(' ');
+
+      
 
       return newChar;
     }, {});
@@ -62,8 +64,9 @@ class App extends Component {
 
    getCharacters = () => {
     const characters = this.state.quotes.reduce((acc, quote) => {
-      if (!acc.includes(quote.author)) {
-        acc.push(quote.author);
+      const realName = this.formatName(quote.author).split('+').join(' ');
+      if (!acc.includes(realName)) {
+        acc.push(realName);
       }
 
       return acc;
@@ -107,7 +110,7 @@ class App extends Component {
             />
           {/* // } */}
         </main>
-        <Footer showQuote={this.showQuote}/>} />
+        <Footer showQuote={this.showQuote}/>
       </div>
     )
   }
