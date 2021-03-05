@@ -1,4 +1,6 @@
+import { waitForDomChange } from '@testing-library/react';
 import React, { Component } from 'react';
+import Characters from '../Characters/Characters';
 import './Game.css';
 
 class Game extends Component {
@@ -7,19 +9,37 @@ class Game extends Component {
     this.state = {
       quotes: this.props.quotes,
       currentQuote: {},
-      characters: [],
+      characters: this.props.characters,
       pastQuotes: [],
       correctAnswers: 0
     }
   }
 
   componentDidMount = () => {
-    this.getCharacters();
     this.getQuote();
   }
 
-  getRandomIndex = (array) => {
-    return Math.floor(Math.random() * array.length);
+  getRandomIndex(arr) {
+    return Math.floor(Math.random() * arr.length);
+  }
+
+  createCharacterOptions = () => {
+    const correctAnswer = this.state.currentQuote.author;
+    const wrongAnswer1 = this.getWrongAnswer(correctAnswer);
+    const wrongAnswer2 = this.getWrongAnswer(correctAnswer);
+
+    const answers = [wrongAnswer1, wrongAnswer2];
+    const answersIndex = this.getRandomIndex(answers);
+
+    answers.splice(answersIndex, 0, correctAnswer);
+
+    return answers;
+  }
+
+  getWrongAnswer = (correctAnswer) => {
+    const wrongAnswers = this.state.characters.filter(char => char !== correctAnswer)
+    
+    return wrongAnswers[this.getRandomIndex(wrongAnswers)];
   }
 
   getQuote = () => {
@@ -27,51 +47,17 @@ class Game extends Component {
     const randomQuote = quotes[this.getRandomIndex(quotes)];
 
     this.setState({ currentQuote: randomQuote });
-  }
-
-  getCharacters = () => {
-    const characters = this.state.quotes.reduce((acc, quote) => {
-      if (!acc.includes(quote.author)) {
-        acc.push(quote.author);
-      }
-
-      return acc;
-    }, [])
-    
-    this.setState({ characters: characters });
+    // console.log(2, this.state.currentQuote)
+    // console.log(randomQuote)
   }
 
   render() {
     return (
       <section className='quote-container'>
         <h2 className='headline'>QUOTE:</h2>
-        <h3>{this.state.currentQuote.quote}</h3>
-        <section className='cards-container'>
-          <article className='card hover-states'>
-            <img 
-              className='card-image' 
-              src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'
-              alt={this.state.currentQuote.author}
-            />
-            <h4>{this.state.currentQuote.author}</h4>
-          </article>
-          <article className='card hover-states'>
-            <img 
-              className='card-image' 
-              src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'
-              alt={this.state.currentQuote.author}
-            />
-            <h4>{this.state.currentQuote.author}</h4>
-          </article>
-          <article className='card hover-states'>
-            <img 
-              className='card-image' 
-              src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'
-              alt={this.state.currentQuote.author}
-            />
-            <h4>{this.state.currentQuote.author}</h4>
-          </article>
-        </section>
+        <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
+        {/* {this.state.characters &&  */}
+          <Characters characters={this.createCharacterOptions()}/>
       </section>
     )
   }

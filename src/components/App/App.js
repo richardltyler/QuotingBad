@@ -12,6 +12,7 @@ class App extends Component {
     super();
     this.state = {
       quotes: [],
+      characters: [],
       isHome: true
     };
   }
@@ -20,7 +21,20 @@ class App extends Component {
     httpRequests.getAllQuotes()
       .then(quotes => {
         this.setState({ quotes: quotes });
+        this.getCharacters()
       });
+  }
+
+   getCharacters = () => {
+    const characters = this.state.quotes.reduce((acc, quote) => {
+      if (!acc.includes(quote.author)) {
+        acc.push(quote.author);
+      }
+
+      return acc;
+    }, [])
+    
+    this.setState({ characters: characters });
   }
 
   showQuote = () => {
@@ -47,7 +61,7 @@ class App extends Component {
           <Route 
             path='/game'
             
-            render={() => <Game  quotes={this.state.quotes}/>}
+            render={() => <Game  quotes={this.state.quotes} characters={this.state.characters} />}
           />
           }
         </main>
