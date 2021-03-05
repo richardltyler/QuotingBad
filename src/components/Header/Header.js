@@ -10,7 +10,11 @@ const Header = ({ goHome }) => {
           <span className='logo-block'>Qu</span>oting<br></br>
           <span className='logo-block'>Ba</span>d
         </h1>
-        <NavLink onClick={() => goHome()} to='/'>Home</NavLink>
+        <NavLink 
+          className='home-link'
+          onClick={() => goHome()} 
+          to='/'
+        >Home</NavLink>
     </header>
   )
 }
