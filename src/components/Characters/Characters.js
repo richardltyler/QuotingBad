@@ -9,8 +9,9 @@ const Characters = ({ characters, correctAnswer, getRandomIndex, getWrongAnswer}
   const wrongAnswer1 = getWrongAnswer(wrongAnswers);
   const wrongAnswer2 = getWrongAnswer(wrongAnswers, wrongAnswer1);
   const options = [wrongAnswer1, wrongAnswer2];
-  const randomI = getRandomIndex(options);
-  // console.log(randomI, correctAnswer)
+  
+  const randomI = Math.floor(Math.random() * 3);
+  
   options.splice(randomI, 0, correctAuthor);
 
   const characterCards = options.map((char, i) => {

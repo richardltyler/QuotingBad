@@ -58,9 +58,7 @@ class Game extends Component {
       <section className='quote-container'>
         <h2 className='headline'>QUOTE:</h2>
         <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
-        {this.state.currentQuote && 
           <Characters getRandomIndex={this.getRandomIndex} getWrongAnswer={this.getWrongAnswer} correctAnswer={this.state.currentQuote.author} characters={this.state.characters}/>
-        }
       </section>
     )
   }
