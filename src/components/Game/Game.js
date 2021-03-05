@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Start from '../Start/Start';
 import Characters from '../Characters/Characters';
 import './Game.css';
 
@@ -6,6 +7,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      gameOn: false,
       quotes: this.props.quotes,
       currentQuote: {},
       currentOptions: [],
@@ -40,9 +42,7 @@ class Game extends Component {
     if (wrongAnswer) {
       answers = answers.filter(char => char.character !== wrongAnswer.character);
     }
-    
-
-  
+      
     return answers[this.getRandomIndex(answers)];
   }
 
@@ -53,13 +53,26 @@ class Game extends Component {
     this.setState({ currentQuote: randomQuote });
   }
 
+  startGame = () => {
+    this.setState({ gameOn: true });
+  }
+
   render() {
     return (
-      <section className='quote-container'>
-        <h2 className='headline'>QUOTE:</h2>
-        <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
-          <Characters getRandomIndex={this.getRandomIndex} getWrongAnswer={this.getWrongAnswer} correctAnswer={this.state.currentQuote.author} characters={this.state.characters}/>
-      </section>
+      <div>
+        {!this.state.gameOn && <Start startGame={this.startGame}/>}
+        {this.state.gameOn && this.state.currentQuote && 
+          <section className='quote-container'>
+            <h2 className='headline'>QUOTE:</h2>
+            <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
+            <Characters 
+              getRandomIndex={this.getRandomIndex} 
+              getWrongAnswer={this.getWrongAnswer} 
+              correctAnswer={this.state.currentQuote.author} 
+              characters={this.state.characters}/>
+          </section>
+        }
+      </div>
     )
   }
 }

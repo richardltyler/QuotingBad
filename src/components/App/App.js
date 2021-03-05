@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
-import Start from '../Start/Start';
+// import Start from '../Start/Start';
 import Game from '../Game/Game';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
@@ -14,8 +14,8 @@ class App extends Component {
     this.state = {
       quotes: [],
       characters: [],
-      isHome: true,
-      gameOn: false,
+      // isHome: true,
+      // gameOn: false,
     };
   }
 
@@ -106,19 +106,20 @@ class App extends Component {
       <div className="App">
         <Header toggleHome={this.toggleHome} endGame={this.endGame}/>
         <main className="main">
-
             <Route 
               path='/about'
               render={() => <About />}
-              />
+            />
 
-              {!this.state.isHome && this.state.gameOn &&
-                <Game quotes={this.state.quotes} characters={this.state.characters} />
+            <Route
+              exact path='/'
+              render={() => 
+                <Game 
+                  quotes={this.state.quotes} 
+                  characters={this.state.characters} 
+                />
               }
-
-          {this.state.isHome && !this.gameOn &&
-            <Start startGame={this.startGame} toggleHome={this.toggleHome}/>
-          }
+            />
         </main>
         <Footer goHome={this.goHome} endGame={this.endGame}/>
       </div>

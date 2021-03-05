@@ -3,7 +3,8 @@ import React from 'react';
 import './Start.css';
 
 const Start = (props) => {
-  const { startGame, toggleHome } = props;
+  // const { startGame, toggleHome } = props;
+  const { startGame } = props;
 
   return (
     <section  className="rules-container">
@@ -12,13 +13,11 @@ const Start = (props) => {
       <p>Choose the character that you think authored the quote</p> 
       <h3>Be the one who knocks to start a game</h3>
       
-      {/* <Link to='/game'> */}
-        <button onClick={() => {
-          startGame();
-          toggleHome();
-        }} 
-        className ="knock-button hover-states">KNOCK</button>
-      {/* </Link> */}
+      <button 
+        onClick={() => startGame()}
+        className ="knock-button hover-states">
+        KNOCK
+      </button>
     </section>
   )
 }
