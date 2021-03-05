@@ -22,8 +22,42 @@ class App extends Component {
     httpRequests.getAllQuotes()
       .then(quotes => {
         this.setState({ quotes: quotes });
-        this.getCharacters()
-      });
+        this.getCharacters();
+      })
+  }
+
+  getImages = (characters) => {
+    const wholeChars = characters.map(char => {
+      const newChar = {}
+      const formattedName = this.formatName(char);
+      httpRequests.getCharacters(formattedName)
+        .then(image => newChar.img = image)
+
+      newChar.character = char;
+
+      return newChar;
+    }, {});
+
+    return wholeChars;
+  }
+
+  formatName = (name) => {
+    if (name === 'Jimmy McGill') {
+      name = 'Saul Goodman';
+    }
+
+    const splitName = name.split(' ');
+    if (splitName[0] === 'Gus') {
+      splitName[0] = 'Gustavo';
+    } else if (splitName[0] === 'Kim') {
+      splitName[0] = 'Kimberly';
+    } else if (splitName[0] === 'Hank') {
+      splitName[0] = 'Henry'
+    } else if (splitName[0] === 'Chuck') {
+      splitName[0] = 'Charles'
+    } 
+  
+    return splitName.join('+')
   }
 
    getCharacters = () => {
@@ -33,9 +67,10 @@ class App extends Component {
       }
 
       return acc;
-    }, [])
-    
-    this.setState({ characters: characters });
+    }, []);
+    // console.log(characters)
+    const wholeCharacter = this.getImages(characters);
+    this.setState({ characters: wholeCharacter });
   }
 
   showQuote = () => {

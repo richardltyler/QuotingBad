@@ -15,8 +15,8 @@ class Game extends Component {
   }
 
   componentDidMount = () => {
-    // this.props.showQuote();
     this.getQuote();
+    // this.createCharacterOptions();
   }
 
   getRandomIndex(arr) {
@@ -37,9 +37,9 @@ class Game extends Component {
   }
 
   getWrongAnswer = (correctAnswer) => {
-    const wrongAnswers = this.state.characters.filter(char => char !== correctAnswer)
-    
-    return wrongAnswers[this.getRandomIndex(wrongAnswers)];
+    const wrongAnswers = this.state.characters.filter(char => char.character !== correctAnswer)
+  
+    return wrongAnswers[this.getRandomIndex(wrongAnswers)].character;
   }
 
   getQuote = () => {

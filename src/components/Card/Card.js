@@ -6,10 +6,10 @@ const Card = ({ character }) => {
     <article className='card hover-states'>
       <img 
         className='card-image' 
-        src='https://i.pinimg.com/originals/88/6f/73/886f7314a80498b233d365a26262bc12.jpg'
-        alt={character}
+        src={character.img}
+        alt={character.character}
       />
-      <h4>{character}</h4>
+      <h4>{character.character}</h4>
     </article>
   );
 }
