@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
   return (
     <footer className='footer'>
-      <a href='https://youtu.be/Jx8V_ogFz2o'>About</a>
+      <Link to='/about'>About</Link>
     </footer>
   )
 }

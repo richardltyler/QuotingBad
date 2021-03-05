@@ -1,10 +1,11 @@
 import { Component } from 'react';
-// import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
 import Start from '../Start/Start';
 import Game from '../Game/Game';
+import About from '../About/About';
 import Footer from '../Footer/Footer';
 
 class App extends Component {
@@ -50,6 +51,11 @@ class App extends Component {
       <div className="App">
         <Header goHome={this.goHome}/>
         <main className="main">
+          <Route 
+              path ='/about'
+              render={() => <About />}
+            />
+
           {this.state.isHome && 
            <Start showQuote={this.showQuote} />}
 
