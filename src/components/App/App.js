@@ -40,11 +40,15 @@ class App extends Component {
   showQuote = () => {
     this.setState({ isHome: false });
   }
+
+  goHome = () => {
+    this.setState({ isHome: true });
+  }
   
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header goHome={this.goHome}/>
         <main className="main">
           {this.state.isHome && 
           <Route 
