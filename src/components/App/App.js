@@ -51,18 +51,28 @@ class App extends Component {
       <div className="App">
         <Header goHome={this.goHome}/>
         <main className="main">
-          <Route 
-              path ='/about'
-              render={() => <About />}
+          {!this.state.isHome && 
+            <Route 
+            path='/game'
+            render={() => <Game quotes={this.state.quotes} characters={this.state.characters} />}
             />
-
-          {this.state.isHome && 
-           <Start showQuote={this.showQuote} />}
+          }
 
           {!this.state.isHome && 
-            <Game  quotes={this.state.quotes} characters={this.state.characters} />}
+            <Route 
+                exact path='/about'
+                render={() => <About />}
+            />
+          }
+
+          {this.state.isHome && 
+            <Route 
+              path='/'
+              render={() => <Start showQuote={this.showQuote} />}
+            />
+          }
         </main>
-        <Footer />
+        <Footer showQuote={this.showQuote}/>} />
       </div>
     )
   }

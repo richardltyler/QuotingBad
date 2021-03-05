@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ showQuote }) => {
   return (
     <footer className='footer'>
-      <Link to='/about'>About</Link>
+      <NavLink 
+        to='/about'
+        onClick={() => showQuote()}
+        >About</NavLink>
     </footer>
   )
 }
