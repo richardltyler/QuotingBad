@@ -5,10 +5,28 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentQuote: this.props.quote,
+      quotes: this.props.quotes,
+      currentQuote: this.props.quotes[0],
+      characters: [],
       pastQuotes: [],
       correctAnswers: 0
     }
+  }
+
+  componentDidMount = () => {
+    this.getCharacters();
+  }
+
+  getCharacters = () => {
+    const characters = this.state.quotes.reduce((acc, quote) => {
+      if (!acc.includes(quote.author)) {
+        acc.push(quote.author);
+      }
+
+      return acc;
+    }, [])
+    
+    this.setState({ characters: characters });
   }
 
   render() {

@@ -12,7 +12,6 @@ class App extends Component {
     super();
     this.state = {
       quotes: [],
-      characters: [],
       isHome: true
     };
   }
@@ -21,21 +20,14 @@ class App extends Component {
     httpRequests.getAllQuotes()
       .then(quotes => {
         this.setState({ quotes: quotes });
-        this.getCharacters(quotes);
       });
   }
 
-  getCharacters = (quotes) => {
-    const characters = quotes.reduce((acc, quote) => {
-      if (!acc.includes(quote.author)) {
-        acc.push(quote.author);
-      }
-
-      return acc;
-    }, [])
-    
-    this.setState({ characters: characters });
+  getRandomIndex = (array) => {
+    return Math.floor(Math.random() * array.length);
   }
+
+  getRandomQuote
 
   showQuote = () => {
     this.setState({ isHome: false });
@@ -61,7 +53,7 @@ class App extends Component {
           <Route 
             path='/game'
             
-            render={() => <Game  quote={this.state.quotes[0]}/>}
+            render={() => <Game  quotes={this.state.quotes}/>}
           />
           }
         </main>
