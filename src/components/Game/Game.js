@@ -27,7 +27,7 @@ class Game extends Component {
     const correctAnswer = this.getCorrectAnswer();
     const wrongAnswer1 = this.getWrongAnswer(correctAnswer);
     const wrongAnswer2 = this.getWrongAnswer(correctAnswer, wrongAnswer1);
-    
+
     const answers = [wrongAnswer1, wrongAnswer2];
     const answersIndex = this.getRandomIndex(answers);
 
@@ -36,11 +36,14 @@ class Game extends Component {
     this.setState({ currentOptions: answers });
   }
 
-  getWrongAnswer = (correctAnswer, wrongAnswer) => {
-    const wrongAnswers = this.state.characters.filter(char => char.character !== correctAnswer && char.character !== wrongAnswer);
+  getWrongAnswer = (answers, wrongAnswer) => {
+    if (wrongAnswer) {
+      answers = answers.filter(char => char.character !== wrongAnswer.character);
+    }
+    
 
   
-    return wrongAnswers[this.getRandomIndex(wrongAnswers)].character;
+    return answers[this.getRandomIndex(answers)];
   }
 
   getQuote = () => {
@@ -55,8 +58,8 @@ class Game extends Component {
       <section className='quote-container'>
         <h2 className='headline'>QUOTE:</h2>
         <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
-        {this.state.currentOptions && 
-          <Characters getRandomIndex={this.getRandomIndex} correctAnswer={this.state.currentQuote.author} characters={this.state.characters}/>
+        {this.state.currentQuote && 
+          <Characters getRandomIndex={this.getRandomIndex} getWrongAnswer={this.getWrongAnswer} correctAnswer={this.state.currentQuote.author} characters={this.state.characters}/>
         }
       </section>
     )
