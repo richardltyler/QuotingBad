@@ -23,8 +23,6 @@ class App extends Component {
       });
   }
 
-  getRandomQuote
-
   showQuote = () => {
     this.setState({ isHome: false });
   }
