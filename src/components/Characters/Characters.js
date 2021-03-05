@@ -5,12 +5,12 @@ import './Characters.css';
 const Characters = ({ characters, correctAnswer, getRandomIndex, getWrongAnswer}) => {
   const correctAuthor = characters.find(char => char.character === correctAnswer);
   const wrongAnswers = characters.filter(char => char.character !== correctAnswer);
-  // console.log(correctAnswer) 
+  
   const wrongAnswer1 = getWrongAnswer(wrongAnswers);
   const wrongAnswer2 = getWrongAnswer(wrongAnswers, wrongAnswer1);
   const options = [wrongAnswer1, wrongAnswer2];
   const randomI = getRandomIndex(options);
-  console.log(randomI, correctAnswer)
+  // console.log(randomI, correctAnswer)
   options.splice(randomI, 0, correctAuthor);
 
   const characterCards = options.map((char, i) => {
