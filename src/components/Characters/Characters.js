@@ -9,9 +9,7 @@ const Characters = ({ characters }) => {
 
   return (
     <section className='cards-container'>
-      <article className='card hover-states'>
         {characterCards}
-      </article>
     </section>
   );
 }

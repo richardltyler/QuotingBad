@@ -1,4 +1,3 @@
-import { waitForDomChange } from '@testing-library/react';
 import React, { Component } from 'react';
 import Characters from '../Characters/Characters';
 import './Game.css';
