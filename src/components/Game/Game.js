@@ -15,6 +15,7 @@ class Game extends Component {
   }
 
   componentDidMount = () => {
+    // this.props.showQuote();
     this.getQuote();
   }
 

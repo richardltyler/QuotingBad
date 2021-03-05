@@ -58,19 +58,19 @@ class App extends Component {
             />
           }
 
-          {!this.state.isHome && 
+          {/* {!this.state.isHome &&  */}
             <Route 
-                exact path='/about'
-                render={() => <About />}
+              path='/about'
+              render={() => <About />}
             />
-          }
+          {/* // } */}
 
-          {this.state.isHome && 
+          {/* {this.state.isHome &&  */}
             <Route 
-              path='/'
-              render={() => <Start showQuote={this.showQuote} />}
+              exact path='/'
+              render={() => <Start showQuote={this.showQuote}/>}
             />
-          }
+          {/* // } */}
         </main>
         <Footer showQuote={this.showQuote}/>} />
       </div>
