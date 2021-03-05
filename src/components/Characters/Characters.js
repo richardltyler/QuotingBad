@@ -7,13 +7,10 @@ const Characters = ({ characters, correctAnswer, getRandomIndex }) => {
   const wrongAnswers = characters.filter(char => char.character !== correctAnswer);
   const wrongAnswer1 = wrongAnswers[getRandomIndex(wrongAnswers)];
   const wrongAnswer2 = wrongAnswers[getRandomIndex(wrongAnswers, wrongAnswer1)];
-  console.log(correctAnswer)
-  console.log(characters)
-
+  // console.log()
   const options = [wrongAnswer1, wrongAnswer2];
-  options.splice(getRandomIndex[options], 0, correctAuthor);
+  options.splice(getRandomIndex(options), 0, correctAuthor);
 
-  console.log(options)
   const characterCards = options.map((char, i) => {
     return <Card key={i} character={char} />;
   });

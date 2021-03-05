@@ -27,8 +27,7 @@ class Game extends Component {
     const correctAnswer = this.getCorrectAnswer();
     const wrongAnswer1 = this.getWrongAnswer(correctAnswer);
     const wrongAnswer2 = this.getWrongAnswer(correctAnswer, wrongAnswer1);
-
-    console.log(correctAnswer)
+    
     const answers = [wrongAnswer1, wrongAnswer2];
     const answersIndex = this.getRandomIndex(answers);
 

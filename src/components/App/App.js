@@ -34,7 +34,6 @@ class App extends Component {
     const wholeChars = characters.map(char => {
       const newCharacter = {}
       const formattedName = this.formatName(char)
-      // console.log(char)
       httpRequests.getCharacters(formattedName)
         .then(image => newCharacter.img = image)
 
