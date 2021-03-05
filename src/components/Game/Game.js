@@ -17,13 +17,7 @@ class Game extends Component {
 
   componentDidMount = () => {
     this.getQuote();
-      // this.createCharacterOptions();
   }
-
-  // componentDidUpdate = () => {
-  //   this.createCharacterOptions();
-  //   console.log(2, this.state.currentQuote)
-  // }
 
   getRandomIndex(arr) {
     return Math.floor(Math.random() * arr.length);
@@ -42,13 +36,6 @@ class Game extends Component {
 
     this.setState({ currentOptions: answers });
   }
-
-  // getCorrectAnswer = () => {
-  //   console.log(this.state.currentQuote)
-  //   const correctAuthor = this.state.characters.find(char => char.character === this.state.currentQuote.author);
-
-  //   return correctAuthor.character;
-  // }
 
   getWrongAnswer = (correctAnswer, wrongAnswer) => {
     const wrongAnswers = this.state.characters.filter(char => char.character !== correctAnswer && char.character !== wrongAnswer);

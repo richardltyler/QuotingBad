@@ -7,6 +7,8 @@ const Characters = ({ characters, correctAnswer, getRandomIndex }) => {
   const wrongAnswers = characters.filter(char => char.character !== correctAnswer);
   const wrongAnswer1 = wrongAnswers[getRandomIndex(wrongAnswers)];
   const wrongAnswer2 = wrongAnswers[getRandomIndex(wrongAnswers, wrongAnswer1)];
+  console.log(correctAnswer)
+  console.log(characters)
 
   const options = [wrongAnswer1, wrongAnswer2];
   options.splice(getRandomIndex[options], 0, correctAuthor);
@@ -18,7 +20,7 @@ const Characters = ({ characters, correctAnswer, getRandomIndex }) => {
 
   return (
     <section className='cards-container'>
-        {characterCards}
+        {correctAnswer && characterCards}
     </section>
   );
 }

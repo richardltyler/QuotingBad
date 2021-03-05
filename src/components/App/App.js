@@ -21,29 +21,51 @@ class App extends Component {
   componentDidMount = () => {
     httpRequests.getAllQuotes()
       .then(quotes => {
-        this.setState({ quotes: quotes });
+        const formattedQuotes = quotes.map(quote => {
+          this.getRealName(quote.author)
+          return { author: this.getRealName(quote.author), quote: quote.quote }
+        });
+        this.setState({ quotes: formattedQuotes });
         this.getCharacters();
       })
   }
 
   getImages = (characters) => {
     const wholeChars = characters.map(char => {
-      const newChar = {}
-      const formattedName = this.formatName(char);
+      const newCharacter = {}
+      const formattedName = this.formatName(char)
+      // console.log(char)
       httpRequests.getCharacters(formattedName)
-        .then(image => newChar.img = image)
+        .then(image => newCharacter.img = image)
 
-      newChar.character = formattedName.split('+').join(' ');
+        newCharacter.character = char;
 
       
 
-      return newChar;
+      return newCharacter;
     }, {});
 
     return wholeChars;
   }
 
   formatName = (name) => {
+    return name.split(' ').join('+')
+  }
+
+   getCharacters = () => {
+    const characters = this.state.quotes.reduce((acc, quote) => {
+      if (!acc.includes(quote.author)) {
+        acc.push(quote.author);
+      }
+
+      return acc;
+    }, []);
+
+    const wholeCharacters = this.getImages(characters);
+    this.setState({ characters: wholeCharacters });
+  }
+
+  getRealName = (name) => {
     if (name === 'Jimmy McGill') {
       name = 'Saul Goodman';
     }
@@ -58,22 +80,9 @@ class App extends Component {
     } else if (splitName[0] === 'Chuck') {
       splitName[0] = 'Charles'
     } 
-  
-    return splitName.join('+')
-  }
 
-   getCharacters = () => {
-    const characters = this.state.quotes.reduce((acc, quote) => {
-      const realName = this.formatName(quote.author).split('+').join(' ');
-      if (!acc.includes(realName)) {
-        acc.push(realName);
-      }
-
-      return acc;
-    }, []);
-    // console.log(characters)
-    const wholeCharacter = this.getImages(characters);
-    this.setState({ characters: wholeCharacter });
+    const newName = splitName.join(' ');
+    return newName;
   }
 
   showQuote = () => {
