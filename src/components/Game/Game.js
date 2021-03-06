@@ -13,7 +13,8 @@ class Game extends Component {
       currentOptions: [],
       characters: this.props.characters,
       pastQuotes: [],
-      correctAnswers: 0
+      correctAnswers: 0,
+      isLoading: true,
     }
   }
 
@@ -60,7 +61,9 @@ class Game extends Component {
   render() {
     return (
       <div>
-        {!this.state.gameOn && <Start startGame={this.startGame}/>}
+        {!this.state.currentQuote && !this.state.gameOn && <h2>loading...</h2>}
+        {!this.state.gameOn && this.state.currentQuote && <Start startGame={this.startGame}/>}
+
         {this.state.gameOn && this.state.currentQuote && 
           <section className='quote-container'>
             <h2 className='headline'>QUOTE:</h2>
