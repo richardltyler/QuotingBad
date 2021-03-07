@@ -12,10 +12,7 @@ class App extends Component {
     super();
     this.state = {
       error: false,
-      isHome: true,
-      isAbout: false,
     };
-    this.baseState = this.state;
   }
 
   handleError = (response) => {
@@ -25,16 +22,6 @@ class App extends Component {
       } else {
         return response;
       }
-  }
-
-  toggleHome = () => {
-    this.setState({ isHome: !this.state.isHome, isAbout: true  });
-    // this.setState({ isAbout: !this.state.isABout });
-  }
-
-  goHome = () => {
-    this.setState(this.baseState);
-    // this.forceUpdate();
   }
   
   render() {

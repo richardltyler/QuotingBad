@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ location }) => {
 
   return (
     <header className="header">
@@ -9,9 +10,12 @@ const Header = () => {
           <span className='logo-block'>Qu</span>oting<br></br>
           <span className='logo-block'>Ba</span>d
         </h1>
+        {location.pathname !== '/' && 
+        <Link className='home-link' to='/'>Home</ Link>
+      }
     </header>
   )
 }
 
-export default Header;
+export default withRouter(Header);
 
