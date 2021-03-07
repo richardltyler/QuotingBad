@@ -22,10 +22,12 @@ class App extends Component {
   componentDidMount = () => {
     httpRequests.getAllQuotes()
       .then(quotes => {
+        // if (quotes )
         const formattedQuotes = quotes.map(quote => {
-          this.getRealName(quote.author)
-          return { author: this.getRealName(quote.author), quote: quote.quote }
+          this.getRealName(quote.author);
+          return { author: this.getRealName(quote.author), quote: quote.quote };
         });
+
         this.setState({ quotes: formattedQuotes });
         this.getCharacters();
       })
@@ -39,6 +41,8 @@ class App extends Component {
         .then(response => {
           if (response.includes('error')) {
             this.setState({ error: response });
+          } else {
+            return response;
           }
         })
         .then(image => newCharacter.img = image)
