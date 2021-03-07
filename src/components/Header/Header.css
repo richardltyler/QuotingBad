@@ -3,7 +3,7 @@
   font-family: 'Averia Serif Libre';
   border-bottom: 3px solid #15493C;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -21,5 +21,10 @@
 }
 
 .logo-block:nth-of-type(2) {
-  margin-left: 34px;
+  margin-left: 58px;
+}
+
+.home-link {
+  align-self: flex-end;
+  margin: 1rem;
 }

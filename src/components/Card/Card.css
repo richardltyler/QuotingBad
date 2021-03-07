@@ -1,0 +1,34 @@
+.card {
+  height: 20rem;
+  width: 15rem;
+  font-size: 1.5rem;
+}
+
+.card-image {
+  max-width: 225px;
+  height: 278px;
+  box-shadow: 5px 3px 15px #15493C;
+  border-radius: 8px;
+  background: #15493C;
+}
+
+.card-image:hover {
+  box-shadow: 5px 3px 15px #106924;
+}
+
+@media screen and (max-width: 850px) {
+  .card-image {
+    display: none;
+  }
+
+  .card {
+    height: 5rem;
+    width: 90%;
+    border: 8px solid #15493C;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+}
