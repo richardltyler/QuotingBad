@@ -34,11 +34,10 @@ class App extends Component {
       const newCharacter = {}
       const formattedName = this.formatName(char)
       httpRequests.getCharacters(formattedName)
+        .then()
         .then(image => newCharacter.img = image)
 
-        newCharacter.character = char;
-
-      
+      newCharacter.character = char;
 
       return newCharacter;
     }, {});

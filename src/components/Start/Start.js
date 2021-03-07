@@ -1,9 +1,7 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import './Start.css';
 
 const Start = (props) => {
-  // const { startGame, toggleHome } = props;
   const { startGame } = props;
 
   return (
