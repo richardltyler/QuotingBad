@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Start from '../Start/Start';
 import Characters from '../Characters/Characters';
+import httpRequests from '../../httpRequests.js';
 import './Game.css';
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quotes: this.props.quotes,
-      characters: this.props.characters,
+      quotes: [],
+      characters: [],
       currentQuote: {},
       currentOptions: [],
       pastQuotes: [],
@@ -17,13 +19,103 @@ class Game extends Component {
       hasGuessed: false,
       guessedCorrect: false,
       gameOver: false,
+      error: '',
     };
     this.baseState = this.state;
   }
 
   componentDidMount = () => {
-    this.getQuote();
+    // console.log('yeet')
+    // this.setState({ characters: this.props.characters, quotes: this.props.quotes } );
+    this.getData();
+    // this.getQuote();
+
   }
+
+  getData = () => {
+    httpRequests.getAllQuotes()
+      .then(quotes => this.assignStateFromData(quotes))
+      .then(() => this.getCharacters())
+      .then(() => this.getQuote())
+      .catch(() => {
+        const error = `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
+
+        this.setState({ error: error });
+      });
+  }
+
+  assignStateFromData = (quotes) => {
+    const formattedQuotes = quotes.map(quote => {
+      // Try to delete this when you get this ish workiing
+      this.getRealName(quote.author)
+      return { author: this.getRealName(quote.author), quote: quote.quote }
+    })
+
+    this.setState({ quotes: formattedQuotes });
+  }
+
+  getRealName = (name) => {
+    if (name === 'Jimmy McGill') {
+      name = 'Saul Goodman';
+    }
+
+    const splitName = name.split(' ');
+    if (splitName[0] === 'Gus') {
+      splitName[0] = 'Gustavo';
+    } else if (splitName[0] === 'Kim') {
+      splitName[0] = 'Kimberly';
+    } else if (splitName[0] === 'Hank') {
+      splitName[0] = 'Henry'
+    } else if (splitName[0] === 'Chuck') {
+      splitName[0] = 'Charles'
+    } 
+
+    const newName = splitName.join(' ');
+    return newName;
+  }
+
+  getCharacters = () => {
+    const characters = this.state.quotes.reduce((acc, quote) => {
+      if (!acc.includes(quote.author)) {
+        acc.push(quote.author);
+      }
+
+      return acc;
+    }, []);
+
+    const wholeCharacters = this.getImages(characters);
+    this.setState({ characters: wholeCharacters });
+  }
+
+  getImages = (characters) => {
+    const wholeChars = characters.map(char => {
+      const newCharacter = {}
+      const formattedName = this.formatName(char)
+      httpRequests.getCharacters(formattedName)
+        .then(response => this.props.checkForError(response))
+        .then(image => newCharacter.img = image)
+
+      newCharacter.character = char;
+
+      return newCharacter;
+    }, {});
+
+    return wholeChars;
+  }
+
+  formatName = (name) => {
+    return name.split(' ').join('+')
+  }
+
+//   checkForError = (response) => {
+//     if (response.includes('error')) {
+//       this.setState({ error: response });
+
+//     } else {
+//       return response;
+//     }
+// }
+
 
   getRandomIndex(arr) {
     return Math.floor(Math.random() * arr.length);
@@ -51,6 +143,7 @@ class Game extends Component {
   }
 
   getQuote = () => {
+    console.log('yeet')
     const quotes = this.state.quotes;
     const randomQuote = quotes[this.getRandomIndex(quotes)];
     
@@ -78,13 +171,12 @@ class Game extends Component {
   }
 
   checkForWin = () => {
-    const amountOfQuotes = this.state.quotes.length;
     const amountPastQuotes = this.state.pastQuotes.length + 1;
-    if (amountPastQuotes === amountOfQuotes) {
+    if (amountPastQuotes > 2) {
       this.setState({ gameOver: true });
       setTimeout(() => {
         this.setState(this.baseState);
-        this.getQuote();
+        this.getData();
       }, 3000);
     } else {
       this.switchQuote();
@@ -95,7 +187,7 @@ class Game extends Component {
     setTimeout(() => {
       this.getQuote();
       this.setState({ hasGuessed: false, guessedCorrect: false });
-    }, 5000);
+    }, 3000);
   }
 
   scoreGame = () => {
@@ -109,7 +201,7 @@ class Game extends Component {
   render() {
     return (
       <div>
-        {!this.state.currentQuote && <h2>loading...</h2>}
+        {!this.state.gameOn && !this.state.currentQuote && <h2>loading...</h2>}
         {!this.state.gameOn && this.state.currentQuote && <Start startGame={this.startGame}/>}
 
         {this.state.gameOn && this.state.currentQuote && !this.state.hasGuessed && 
@@ -140,3 +232,7 @@ class Game extends Component {
 }
 
 export default Game;
+
+Game.propTypes = {
+      checkForError: PropTypes.func.isRequired,
+}

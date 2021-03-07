@@ -10,7 +10,6 @@ const httpRequests = {
       fetch(`https://www.breakingbadapi.com/api/characters?name=${character}`)
       .then(res => res.json())
         .then(characters => {
-          console.log(characters)
           if (characters.length === 0) {
             return `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
             

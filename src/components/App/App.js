@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import httpRequests from '../../httpRequests.js';
+// import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
 import Game from '../Game/Game';
@@ -19,41 +19,45 @@ class App extends Component {
     };
   }
 
-  componentDidMount = () => {
-    httpRequests.getAllQuotes()
-      .then(quotes => this.assignStateFromData(quotes))
-      .catch(() => {
-        const error = `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
+  // componentDidMount = () => {
+  //   this.getData();
+  // }
 
-        this.setState({ error: error });
-      });
-  }
+  // getData = () => {
+  //   httpRequests.getAllQuotes()
+  //     .then(quotes => this.assignStateFromData(quotes))
+  //     .then(() => this.getCharacters())
+  //     .catch(() => {
+  //       const error = `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
 
-  assignStateFromData = (quotes) => {
-    const formattedQuotes = quotes.map(quote => {
-      this.getRealName(quote.author)
-      return { author: this.getRealName(quote.author), quote: quote.quote }
-    })
+  //       this.setState({ error: error });
+  //     });
+  // }
 
-    this.setState({ quotes: formattedQuotes });
-    this.getCharacters();
-  }
+  // assignStateFromData = (quotes) => {
+  //   const formattedQuotes = quotes.map(quote => {
+  //     this.getRealName(quote.author)
+  //     return { author: this.getRealName(quote.author), quote: quote.quote }
+  //   })
 
-  getImages = (characters) => {
-    const wholeChars = characters.map(char => {
-      const newCharacter = {}
-      const formattedName = this.formatName(char)
-      httpRequests.getCharacters(formattedName)
-        .then(response => this.checkForError(response))
-        .then(image => newCharacter.img = image)
+  //   this.setState({ quotes: formattedQuotes });
+  // }
 
-      newCharacter.character = char;
+  // getImages = (characters) => {
+  //   const wholeChars = characters.map(char => {
+  //     const newCharacter = {}
+  //     const formattedName = this.formatName(char)
+  //     httpRequests.getCharacters(formattedName)
+  //       .then(response => this.checkForError(response))
+  //       .then(image => newCharacter.img = image)
 
-      return newCharacter;
-    }, {});
+  //     newCharacter.character = char;
 
-    return wholeChars;
-  }
+  //     return newCharacter;
+  //   }, {});
+
+  //   return wholeChars;
+  // }
 
   checkForError = (response) => {
       if (response.includes('error')) {
@@ -64,49 +68,39 @@ class App extends Component {
       }
   }
 
-  formatName = (name) => {
-    return name.split(' ').join('+')
-  }
 
-   getCharacters = () => {
-    const characters = this.state.quotes.reduce((acc, quote) => {
-      if (!acc.includes(quote.author)) {
-        acc.push(quote.author);
-      }
 
-      return acc;
-    }, []);
+  //  getCharacters = () => {
+  //   const characters = this.state.quotes.reduce((acc, quote) => {
+  //     if (!acc.includes(quote.author)) {
+  //       acc.push(quote.author);
+  //     }
 
-    const wholeCharacters = this.getImages(characters);
-    this.setState({ characters: wholeCharacters });
-  }
+  //     return acc;
+  //   }, []);
 
-  getRealName = (name) => {
-    if (name === 'Jimmy McGill') {
-      name = 'Saul Goodman';
-    }
-
-    const splitName = name.split(' ');
-    if (splitName[0] === 'Gus') {
-      splitName[0] = 'Gustavo';
-    } else if (splitName[0] === 'Kim') {
-      splitName[0] = 'Kimberly';
-    } else if (splitName[0] === 'Hank') {
-      splitName[0] = 'Henry'
-    } else if (splitName[0] === 'Chuck') {
-      splitName[0] = 'Charles'
-    } 
-
-    const newName = splitName.join(' ');
-    return newName;
-  }
-
-  // startGame = () => {
-  //   this.setState({ gameOn: true });
+  //   const wholeCharacters = this.getImages(characters);
+  //   this.setState({ characters: wholeCharacters });
   // }
-  
-  // endGame = () => {
-  //   this.setState({ gameOn: false });
+
+  // getRealName = (name) => {
+  //   if (name === 'Jimmy McGill') {
+  //     name = 'Saul Goodman';
+  //   }
+
+  //   const splitName = name.split(' ');
+  //   if (splitName[0] === 'Gus') {
+  //     splitName[0] = 'Gustavo';
+  //   } else if (splitName[0] === 'Kim') {
+  //     splitName[0] = 'Kimberly';
+  //   } else if (splitName[0] === 'Hank') {
+  //     splitName[0] = 'Henry'
+  //   } else if (splitName[0] === 'Chuck') {
+  //     splitName[0] = 'Charles'
+  //   } 
+
+  //   const newName = splitName.join(' ');
+  //   return newName;
   // }
 
   toggleHome = () => {
@@ -144,9 +138,7 @@ class App extends Component {
               exact path='/'
               render={() => 
                 <Game 
-                  quotes={this.state.quotes} 
-                  characters={this.state.characters} 
-                  resetGame={this.resetGame}
+                  checkForError={this.checkForError}
                 />
               }
             />
@@ -159,3 +151,5 @@ class App extends Component {
 }
 
 export default App;
+
+
