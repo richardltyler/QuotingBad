@@ -11,15 +11,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      error: '',
+      error: false,
       isHome: true,
     };
   }
 
-  checkForError = (response) => {
+  handleError = (response) => {
       if (response.includes('error')) {
-        console.log('drugs')
-        this.setState({ error: response });
+        this.setState({ error: true });
 
       } else {
         return response;
@@ -61,7 +60,7 @@ class App extends Component {
               exact path='/'
               render={() => 
                 <Game 
-                  checkForError={this.checkForError}
+                  handleError={this.handleError}
                 />
               }
             />

@@ -32,11 +32,7 @@ class Game extends Component {
       .then(quotes => this.assignStateFromData(quotes))
       .then(() => this.getCharacters())
       .then(() => this.getQuote())
-      .catch(() => {
-        const error = `Real smooth. Slippin' Jimmy went and got an error. Try again later or go to About to contact the developers with questions!`;
-
-        this.props.checkForError(error);
-      });
+      .catch(() => this.props.handleError('error'));
   }
 
   assignStateFromData = (quotes) => {
@@ -85,7 +81,7 @@ class Game extends Component {
       const newCharacter = {}
       const formattedName = this.formatName(char)
       httpRequests.getCharacters(formattedName)
-        .then(response => this.props.checkForError(response))
+        .then(response => this.props.handleError(response))
         .then(image => newCharacter.img = image)
 
       newCharacter.character = char;
@@ -215,5 +211,5 @@ class Game extends Component {
 export default Game;
 
 Game.propTypes = {
-      checkForError: PropTypes.func.isRequired,
+      handleError: PropTypes.func.isRequired,
 }
