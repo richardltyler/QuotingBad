@@ -74,20 +74,14 @@ class Game extends Component {
     this.setState({ pastQuotes: [...this.state.pastQuotes, this.state.currentQuote] });
     this.setState({ hasGuessed: true });
     
-    // this.switchQuote();
     this.checkForWin();
-    // setTimeout(() => {
-    //   this.switchQuote();
-    //   this.setState({ hasGuessed: false })
-    // }, 5000);
   }
 
   checkForWin = () => {
     const amountOfQuotes = this.state.quotes.length;
-    const amountPastQuotes = this.state.pastQuotes.length + 1 ;
-    if ( amountPastQuotes > 1 ) {
+    const amountPastQuotes = this.state.pastQuotes.length + 1;
+    if (amountPastQuotes === amountOfQuotes) {
       this.setState({ gameOver: true });
-      // this.props.resetGame();
       setTimeout(() => {
         this.setState(this.baseState);
         this.getQuote();
@@ -115,7 +109,7 @@ class Game extends Component {
   render() {
     return (
       <div>
-        {!this.state.currentQuote && !this.state.gameOn && <h2>loading...</h2>}
+        {!this.state.currentQuote && <h2>loading...</h2>}
         {!this.state.gameOn && this.state.currentQuote && <Start startGame={this.startGame}/>}
 
         {this.state.gameOn && this.state.currentQuote && !this.state.hasGuessed && 

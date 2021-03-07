@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ goHome, isHome }) => {
+const Header = ({ toggleHome, isHome }) => {
 
   return (
     <header className="header">
@@ -14,8 +14,7 @@ const Header = ({ goHome, isHome }) => {
           <Link 
             className='home-link'
             onClick={() => {
-              // endGame();
-              goHome();
+              toggleHome();
             }}
             to='/'
           >Home</ Link>

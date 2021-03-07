@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
-// import Start from '../Start/Start';
 import Game from '../Game/Game';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
@@ -15,7 +14,6 @@ class App extends Component {
       quotes: [],
       characters: [],
       isHome: true,
-      // gameOn: false,
     };
   }
 
@@ -85,13 +83,13 @@ class App extends Component {
     return newName;
   }
 
-  startGame = () => {
-    this.setState({ gameOn: true });
-  }
+  // startGame = () => {
+  //   this.setState({ gameOn: true });
+  // }
   
-  endGame = () => {
-    this.setState({ gameOn: false });
-  }
+  // endGame = () => {
+  //   this.setState({ gameOn: false });
+  // }
 
   toggleHome = () => {
     this.setState({ isHome: !this.state.isHome });
@@ -100,16 +98,11 @@ class App extends Component {
   goHome = () => {
     this.setState({ isHome: true });
   }
-
-  resetGame = () => {
-    this.setState({ isHome: false });
-    this.setState({ isHome: true });
-  }
   
   render() {
     return (
       <div className="App">
-        <Header isHome={this.state.isHome} goHome={this.goHome} endGame={this.endGame}/>
+        <Header isHome={this.state.isHome} toggleHome={this.toggleHome} endGame={this.endGame}/>
         <main className="main">
             <Route 
               path='/about'
@@ -120,7 +113,6 @@ class App extends Component {
               exact path='/'
               render={() => 
                 <Game 
-                  key={this.state.isHome}
                   quotes={this.state.quotes} 
                   characters={this.state.characters} 
                   resetGame={this.resetGame}
@@ -128,7 +120,7 @@ class App extends Component {
               }
             />
         </main>
-        <Footer toggleHome={this.toggleHome} endGame={this.endGame}/>
+        <Footer toggleHome={this.toggleHome} />
       </div>
     )
   }
