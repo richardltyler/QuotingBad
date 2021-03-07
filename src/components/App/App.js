@@ -28,6 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <img className='heisenberg-background' src="https://www.pngitem.com/pimgs/m/190-1906199_transparent-heisenberg-clipart-heisenberg-breaking-bad-sketch-hd.png"></img>
         <main className="main">
             <Route 
               path='/error'
