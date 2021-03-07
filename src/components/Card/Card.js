@@ -18,7 +18,7 @@ const Card = ({ character, makeGuess  }) => {
 export default Card;
 
 Card.propTypes = {
-  character: PropTypes.string.isRequired,
+  character: PropTypes.object.isRequired,
   makeGuess: PropTypes.func.isRequired,
 }
 

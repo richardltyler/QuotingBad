@@ -28,5 +28,5 @@ export default Header;
 
 Header.propTypes = {
   toggleHome: PropTypes.func.isRequired,
-  isHome: PropTypes.func.isRequired,
+  isHome: PropTypes.bool.isRequired,
 }
