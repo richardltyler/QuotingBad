@@ -5,7 +5,8 @@
 }
 
 .card-image {
-  width: 15rem;
+  max-width: 225px;
+  height: 278px;
   box-shadow: 5px 3px 15px #15493C;
   border-radius: 8px;
   background: #15493C;
