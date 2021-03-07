@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Start from '../Start/Start';
 import Characters from '../Characters/Characters';
+import Turn from '../Turn/Turn';
 import httpRequests from '../../httpRequests.js';
 import './Game.css';
 
@@ -196,14 +197,12 @@ class Game extends Component {
         }
 
         {this.state.gameOn && this.state.hasGuessed && 
-          <div>
-            <h2>{this.state.guessedCorrect && 'Correct!'}</h2>
-            <h2>{!this.state.guessedCorrect && 'S\'all good man! You\'ll get em next time.'}</h2>
-            <p>It was {this.state.currentQuote.author}!</p>
-            <h3>{this.state.gameOver && 'Game Over!'}</h3>
-            <p>{this.state.gameOver && `You got ${this.scoreGame()} right`}</p>
-          </div>
-          }
+          <Turn 
+            isCorrect={this.state.guessedCorrect}
+            correctAuthor={this.state.currentQuote.author}
+            gameOver={this.state.gameOver}
+          />
+        }
       </div>
     )
   }
