@@ -12,7 +12,6 @@ class App extends Component {
     super();
     this.state = {
       error: false,
-      isHome: true,
     };
   }
 
@@ -24,22 +23,11 @@ class App extends Component {
         return response;
       }
   }
-
-  toggleHome = () => {
-    this.setState({ isHome: !this.state.isHome });
-  }
-
-  goHome = () => {
-    this.setState({ isHome: true });
-  }
   
   render() {
     return (
       <div className="App">
-        <Header 
-          isHome={this.state.isHome} 
-          toggleHome={this.toggleHome} 
-        />
+        <Header />
         <main className="main">
             <Route 
               path='/error'
@@ -64,9 +52,8 @@ class App extends Component {
                 />
               }
             />
-
         </main>
-        <Footer toggleHome={this.toggleHome} />
+        <Footer />
       </div>
     )
   }
