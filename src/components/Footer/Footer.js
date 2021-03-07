@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 
-const Footer = ({ endGame, goHome }) => {
+const Footer = ({ endGame, toggleHome }) => {
   return (
     <footer className='footer'>
       <Link 
         to='/about'
         onClick={() => {
           endGame();
-          goHome();
+          toggleHome();
         }}
         >About</Link>
     </footer>

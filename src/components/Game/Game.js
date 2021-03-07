@@ -7,16 +7,18 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameOn: false,
       quotes: this.props.quotes,
+      characters: this.props.characters,
       currentQuote: {},
       currentOptions: [],
-      characters: this.props.characters,
       pastQuotes: [],
       correctAnswers: 0,
+      gameOn: false,
       hasGuessed: false,
-      // isLoading: true,
-    }
+      guessedCorrect: false,
+      gameOver: false,
+    };
+    this.baseState = this.state;
   }
 
   componentDidMount = () => {
@@ -66,21 +68,49 @@ class Game extends Component {
     const correctAnswer = this.state.currentQuote.author
 
     if (guess === correctAnswer) {
-      this.setState({ correctAnswers: (this.state.correctAnswers + 1) });
+      this.setState({ correctAnswers: (this.state.correctAnswers + 1), guessedCorrect: true });
     } 
 
     this.setState({ pastQuotes: [...this.state.pastQuotes, this.state.currentQuote] });
     this.setState({ hasGuessed: true });
     
-    setTimeout(() => {
+    // this.switchQuote();
+    this.checkForWin();
+    // setTimeout(() => {
+    //   this.switchQuote();
+    //   this.setState({ hasGuessed: false })
+    // }, 5000);
+  }
+
+  checkForWin = () => {
+    const amountOfQuotes = this.state.quotes.length;
+    const amountPastQuotes = this.state.pastQuotes.length + 1 ;
+    if ( amountPastQuotes > 1 ) {
+      this.setState({ gameOver: true });
+      // this.props.resetGame();
+      setTimeout(() => {
+        this.setState(this.baseState);
+        this.getQuote();
+      }, 3000);
+    } else {
       this.switchQuote();
-      this.setState({ hasGuessed: false })
-    }, 5000);
+    }
   }
 
   switchQuote = () => {
-    this.getQuote();
+    setTimeout(() => {
+      this.getQuote();
+      this.setState({ hasGuessed: false, guessedCorrect: false });
+    }, 5000);
   }
+
+  scoreGame = () => {
+    const score = (this.state.correctAnswers / this.state.pastQuotes.length);
+    const scorePercent = (score * 100).toFixed();
+
+    return `${scorePercent}%`;
+  }
+
 
   render() {
     return (
@@ -103,8 +133,11 @@ class Game extends Component {
 
         {this.state.gameOn && this.state.hasGuessed && 
           <div>
-            <h2>{'Correct'}</h2>
+            <h2>{this.state.guessedCorrect && 'Correct!'}</h2>
+            <h2>{!this.state.guessedCorrect && 'Wrong, B****!'}</h2>
             <p>It was {this.state.currentQuote.author}!</p>
+            <h3>{this.state.gameOver && 'Game Over!'}</h3>
+            <p>{this.state.gameOver && `You got ${this.scoreGame()} right`}</p>
           </div>
           }
       </div>

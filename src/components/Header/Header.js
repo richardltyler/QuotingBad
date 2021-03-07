@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ endGame, toggleHome }) => {
+const Header = ({ goHome, isHome }) => {
 
   return (
     <header className="header">
@@ -10,14 +10,16 @@ const Header = ({ endGame, toggleHome }) => {
           <span className='logo-block'>Qu</span>oting<br></br>
           <span className='logo-block'>Ba</span>d
         </h1>
-        <Link 
-          className='home-link'
-          onClick={() => {
-            endGame();
-            toggleHome();
-          }}
-          to='/'
-        >Home</ Link>
+        {!isHome &&
+          <Link 
+            className='home-link'
+            onClick={() => {
+              // endGame();
+              goHome();
+            }}
+            to='/'
+          >Home</ Link>
+        }
     </header>
   )
 }

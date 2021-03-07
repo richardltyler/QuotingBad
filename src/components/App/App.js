@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       quotes: [],
       characters: [],
-      // isHome: true,
+      isHome: true,
       // gameOn: false,
     };
   }
@@ -100,11 +100,16 @@ class App extends Component {
   goHome = () => {
     this.setState({ isHome: true });
   }
+
+  resetGame = () => {
+    this.setState({ isHome: false });
+    this.setState({ isHome: true });
+  }
   
   render() {
     return (
       <div className="App">
-        <Header toggleHome={this.toggleHome} endGame={this.endGame}/>
+        <Header isHome={this.state.isHome} goHome={this.goHome} endGame={this.endGame}/>
         <main className="main">
             <Route 
               path='/about'
@@ -115,13 +120,15 @@ class App extends Component {
               exact path='/'
               render={() => 
                 <Game 
+                  key={this.state.isHome}
                   quotes={this.state.quotes} 
                   characters={this.state.characters} 
+                  resetGame={this.resetGame}
                 />
               }
             />
         </main>
-        <Footer goHome={this.goHome} endGame={this.endGame}/>
+        <Footer toggleHome={this.toggleHome} endGame={this.endGame}/>
       </div>
     )
   }
