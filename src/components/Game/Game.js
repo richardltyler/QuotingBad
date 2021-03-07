@@ -31,13 +31,13 @@ class Game extends Component {
 
   getData = () => {
     httpRequests.getAllQuotes()
-      .then(quotes => this.assignStateFromData(quotes))
+      .then(quotes => this.assignQuotesFromData(quotes))
       .then(() => this.getCharacters())
       .then(() => this.getQuote())
       .catch(() => this.props.handleError('error'));
   }
 
-  assignStateFromData = (quotes) => {
+  assignQuotesFromData = (quotes) => {
     const formattedQuotes = quotes.map(quote => {
       return { author: utilities.getRealName(quote.author), quote: quote.quote }
     })
@@ -74,19 +74,6 @@ class Game extends Component {
     return wholeChars;
   }
 
-  createCharacterOptions = () => {
-    const correctAnswer = this.getCorrectAnswer();
-    const wrongAnswer1 = this.getWrongAnswer(correctAnswer);
-    const wrongAnswer2 = this.getWrongAnswer(correctAnswer, wrongAnswer1);
-
-    const answers = [wrongAnswer1, wrongAnswer2];
-    const answersIndex = utilities.getRandomIndex(answers);
-
-    answers.splice(answersIndex, 0, correctAnswer);
-
-    this.setState({ currentOptions: answers });
-  }
-
   getWrongAnswer = (answers, wrongAnswer) => {
     if (wrongAnswer) {
       answers = answers.filter(char => char.character !== wrongAnswer.character);
@@ -116,8 +103,7 @@ class Game extends Component {
       this.setState({ correctAnswers: (this.state.correctAnswers + 1), guessedCorrect: true });
     } 
 
-    this.setState({ pastQuotes: [...this.state.pastQuotes, this.state.currentQuote] });
-    this.setState({ hasGuessed: true });
+    this.setState({ pastQuotes: [...this.state.pastQuotes, this.state.currentQuote], hasGuessed: true });
     
     this.checkForWin();
   }
