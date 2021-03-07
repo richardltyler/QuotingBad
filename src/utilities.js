@@ -17,6 +17,9 @@ const utilities = {
 
     const newName = splitName.join(' ');
     return newName;
+  },
+  getRandomIndex(arr) {
+    return Math.floor(Math.random() * arr.length);
   }
 }
 

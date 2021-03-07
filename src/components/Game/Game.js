@@ -78,18 +78,13 @@ class Game extends Component {
     return name.split(' ').join('+')
   }
 
-
-  getRandomIndex = (arr) => {
-    return Math.floor(Math.random() * arr.length);
-  }
-
   createCharacterOptions = () => {
     const correctAnswer = this.getCorrectAnswer();
     const wrongAnswer1 = this.getWrongAnswer(correctAnswer);
     const wrongAnswer2 = this.getWrongAnswer(correctAnswer, wrongAnswer1);
 
     const answers = [wrongAnswer1, wrongAnswer2];
-    const answersIndex = this.getRandomIndex(answers);
+    const answersIndex = utilities.getRandomIndex(answers);
 
     answers.splice(answersIndex, 0, correctAnswer);
 
@@ -101,12 +96,12 @@ class Game extends Component {
       answers = answers.filter(char => char.character !== wrongAnswer.character);
     }
       
-    return answers[this.getRandomIndex(answers)];
+    return answers[utilities.getRandomIndex(answers)];
   }
 
   getQuote = () => {
     const quotes = this.state.quotes;
-    const randomQuote = quotes[this.getRandomIndex(quotes)];
+    const randomQuote = quotes[utilities.getRandomIndex(quotes)];
     
     const filteredQuotes = quotes.filter(quote => quote !== randomQuote);
 
