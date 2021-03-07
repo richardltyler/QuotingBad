@@ -13,16 +13,11 @@ const httpRequests = {
   getCharacters(character) {
     return (
       fetch(`https://www.breakingbadapi.com/api/characters?name=${character}`)
-      .then(res => {
-        if (!res.ok) {
-          return `Real smooth. Slippin' Jimmy went and got a ${res.status} error. Try again later or go to About to contact the developers with questions!`;
-        } else {
-          return res.json();
-      }})
+      .then(res => res.json())
         .then(characters => {
-          if (typeof characters === 'string') {
-            console.log(characters)
-            return characters;
+          console.log(characters)
+          if (characters.length === 0) {
+            return `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
             
           } else {
             return characters[0].img;

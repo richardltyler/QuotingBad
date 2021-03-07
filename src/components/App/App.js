@@ -38,13 +38,7 @@ class App extends Component {
       const newCharacter = {}
       const formattedName = this.formatName(char)
       httpRequests.getCharacters(formattedName)
-        .then(response => {
-          if (response.includes('error')) {
-            this.setState({ error: response });
-          } else {
-            return response;
-          }
-        })
+        .then(response => this.checkForError(response))
         .then(image => newCharacter.img = image)
 
       newCharacter.character = char;
@@ -53,6 +47,15 @@ class App extends Component {
     }, {});
 
     return wholeChars;
+  }
+
+  checkForError = (response) => {
+      if (response.includes('error')) {
+        this.setState({ error: response });
+
+      } else {
+        return response;
+      }
   }
 
   formatName = (name) => {
