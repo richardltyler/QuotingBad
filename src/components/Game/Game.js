@@ -41,8 +41,6 @@ class Game extends Component {
 
   assignStateFromData = (quotes) => {
     const formattedQuotes = quotes.map(quote => {
-      // Try to delete this when you get this ish workiing
-      this.getRealName(quote.author)
       return { author: this.getRealName(quote.author), quote: quote.quote }
     })
 
@@ -129,7 +127,6 @@ class Game extends Component {
   }
 
   getQuote = () => {
-    console.log('yeet')
     const quotes = this.state.quotes;
     const randomQuote = quotes[this.getRandomIndex(quotes)];
     
@@ -158,12 +155,12 @@ class Game extends Component {
 
   checkForWin = () => {
     const amountPastQuotes = this.state.pastQuotes.length + 1;
-    if (amountPastQuotes > 2) {
+    if (amountPastQuotes > 1) {
       this.setState({ gameOver: true });
       setTimeout(() => {
         this.setState(this.baseState);
         this.getData();
-      }, 3000);
+      }, 5000);
     } else {
       this.switchQuote();
     }
@@ -183,7 +180,6 @@ class Game extends Component {
     return `${scorePercent}%`;
   }
 
-
   render() {
     return (
       <div>
@@ -195,7 +191,6 @@ class Game extends Component {
             <h2 className='headline'>QUOTE:</h2>
             <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
             <Characters 
-              getRandomIndex={this.getRandomIndex} 
               getWrongAnswer={this.getWrongAnswer} 
               correctAnswer={this.state.currentQuote.author} 
               characters={this.state.characters}
@@ -206,7 +201,7 @@ class Game extends Component {
         {this.state.gameOn && this.state.hasGuessed && 
           <div>
             <h2>{this.state.guessedCorrect && 'Correct!'}</h2>
-            <h2>{!this.state.guessedCorrect && 'Wrong, B****!'}</h2>
+            <h2>{!this.state.guessedCorrect && 'S\'all good man! You\'ll get em next time.'}</h2>
             <p>It was {this.state.currentQuote.author}!</p>
             <h3>{this.state.gameOver && 'Game Over!'}</h3>
             <p>{this.state.gameOver && `You got ${this.scoreGame()} right`}</p>

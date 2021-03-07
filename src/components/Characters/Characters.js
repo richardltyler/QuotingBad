@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes, { object } from 'prop-types';
 import Card from '../Card/Card';
 import './Characters.css';
 
-const Characters = ({ characters, correctAnswer, getRandomIndex, getWrongAnswer, makeGuess}) => {
+const Characters = ({ characters, correctAnswer, getWrongAnswer, makeGuess }) => {
   const correctAuthor = characters.find(char => char.character === correctAnswer);
   const wrongAnswers = characters.filter(char => char.character !== correctAnswer);
   
@@ -20,9 +21,16 @@ const Characters = ({ characters, correctAnswer, getRandomIndex, getWrongAnswer,
 
   return (
     <section className='cards-container'>
-        {correctAnswer && characterCards}
+        {correctAnswer && characters && characterCards}
     </section>
   );
 }
 
 export default Characters;
+
+Characters.propTypes = {
+  characters: PropTypes.arrayOf(object).isRequired,
+  correctAnswer: PropTypes.string.isRequired, 
+  getWrongAnswer: PropTypes.func.isRequired, 
+  makeGuess: PropTypes.func.isRequired,
+}

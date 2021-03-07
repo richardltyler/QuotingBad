@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Card.css';
 
 const Card = ({ character, makeGuess  }) => {
@@ -15,3 +16,9 @@ const Card = ({ character, makeGuess  }) => {
 }
 
 export default Card;
+
+Card.propTypes = {
+  character: PropTypes.string.isRequired,
+  makeGuess: PropTypes.func.isRequired,
+}
+

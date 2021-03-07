@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Header.css';
 
 const Header = ({ toggleHome, isHome }) => {
@@ -24,3 +25,8 @@ const Header = ({ toggleHome, isHome }) => {
 }
 
 export default Header;
+
+Header.propTypes = {
+  toggleHome: PropTypes.func.isRequired,
+  isHome: PropTypes.func.isRequired,
+}

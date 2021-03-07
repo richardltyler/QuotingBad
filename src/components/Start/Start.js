@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Start.css';
 
 const Start = (props) => {
@@ -22,3 +23,7 @@ const Start = (props) => {
 }
 
 export default Start;
+
+Start.propTypes = {
+  startGame: PropTypes.func.isRequired,
+}
