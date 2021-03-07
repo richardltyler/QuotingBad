@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       error: false,
       isHome: true,
+      isAbout: false,
     };
     this.baseState = this.state;
   }
@@ -27,19 +28,19 @@ class App extends Component {
   }
 
   toggleHome = () => {
-    this.setState({ isHome: !this.state.isHome });
+    this.setState({ isHome: !this.state.isHome, isAbout: true  });
+    // this.setState({ isAbout: !this.state.isABout });
   }
 
   goHome = () => {
     this.setState(this.baseState);
+    // this.forceUpdate();
   }
   
   render() {
     return (
       <div className="App">
-        <Header 
-          isHome={this.state.isHome} 
-        />
+        <Header />
         <main className="main">
             <Route 
               path='/error'
@@ -64,9 +65,8 @@ class App extends Component {
                 />
               }
             />
-
         </main>
-        <Footer toggleHome={this.toggleHome} goHome={this.goHome} />
+        <Footer />
       </div>
     )
   }
