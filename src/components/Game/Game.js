@@ -61,7 +61,7 @@ class Game extends Component {
   getImages = (characters) => {
     const wholeChars = characters.map(char => {
       const newCharacter = {}
-      const formattedName = this.formatName(char)
+      const formattedName = utilities.formatName(char);
       httpRequests.getCharacters(formattedName)
         .then(response => this.props.handleError(response))
         .then(image => newCharacter.img = image)
@@ -72,10 +72,6 @@ class Game extends Component {
     }, {});
 
     return wholeChars;
-  }
-
-  formatName = (name) => {
-    return name.split(' ').join('+')
   }
 
   createCharacterOptions = () => {

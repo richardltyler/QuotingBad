@@ -18,9 +18,15 @@ const utilities = {
     const newName = splitName.join(' ');
     return newName;
   },
+
+  formatName(name) {
+    return name.split(' ').join('+')
+  },
+
   getRandomIndex(arr) {
     return Math.floor(Math.random() * arr.length);
-  }
+  },
+
 }
 
 export default utilities;
