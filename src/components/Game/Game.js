@@ -19,17 +19,12 @@ class Game extends Component {
       hasGuessed: false,
       guessedCorrect: false,
       gameOver: false,
-      error: '',
     };
     this.baseState = this.state;
   }
 
   componentDidMount = () => {
-    // console.log('yeet')
-    // this.setState({ characters: this.props.characters, quotes: this.props.quotes } );
     this.getData();
-    // this.getQuote();
-
   }
 
   getData = () => {
@@ -38,9 +33,9 @@ class Game extends Component {
       .then(() => this.getCharacters())
       .then(() => this.getQuote())
       .catch(() => {
-        const error = `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
+        const error = `Real smooth. Slippin' Jimmy went and got an error. Try again later or go to About to contact the developers with questions!`;
 
-        this.setState({ error: error });
+        this.props.checkForError(error);
       });
   }
 
@@ -107,17 +102,8 @@ class Game extends Component {
     return name.split(' ').join('+')
   }
 
-//   checkForError = (response) => {
-//     if (response.includes('error')) {
-//       this.setState({ error: response });
 
-//     } else {
-//       return response;
-//     }
-// }
-
-
-  getRandomIndex(arr) {
+  getRandomIndex = (arr) => {
     return Math.floor(Math.random() * arr.length);
   }
 
@@ -156,7 +142,7 @@ class Game extends Component {
     this.setState({ gameOn: true });
   }
 
-  makeGuess = event => {
+  makeGuess = (event) => {
     const guess = event.target.closest('article').id;
     const correctAnswer = this.state.currentQuote.author
 

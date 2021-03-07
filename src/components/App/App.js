@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-// import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
 import Game from '../Game/Game';
@@ -12,96 +11,20 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      quotes: [],
-      characters: [],
       error: '',
       isHome: true,
     };
   }
 
-  // componentDidMount = () => {
-  //   this.getData();
-  // }
-
-  // getData = () => {
-  //   httpRequests.getAllQuotes()
-  //     .then(quotes => this.assignStateFromData(quotes))
-  //     .then(() => this.getCharacters())
-  //     .catch(() => {
-  //       const error = `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
-
-  //       this.setState({ error: error });
-  //     });
-  // }
-
-  // assignStateFromData = (quotes) => {
-  //   const formattedQuotes = quotes.map(quote => {
-  //     this.getRealName(quote.author)
-  //     return { author: this.getRealName(quote.author), quote: quote.quote }
-  //   })
-
-  //   this.setState({ quotes: formattedQuotes });
-  // }
-
-  // getImages = (characters) => {
-  //   const wholeChars = characters.map(char => {
-  //     const newCharacter = {}
-  //     const formattedName = this.formatName(char)
-  //     httpRequests.getCharacters(formattedName)
-  //       .then(response => this.checkForError(response))
-  //       .then(image => newCharacter.img = image)
-
-  //     newCharacter.character = char;
-
-  //     return newCharacter;
-  //   }, {});
-
-  //   return wholeChars;
-  // }
-
   checkForError = (response) => {
       if (response.includes('error')) {
+        console.log('drugs')
         this.setState({ error: response });
 
       } else {
         return response;
       }
   }
-
-
-
-  //  getCharacters = () => {
-  //   const characters = this.state.quotes.reduce((acc, quote) => {
-  //     if (!acc.includes(quote.author)) {
-  //       acc.push(quote.author);
-  //     }
-
-  //     return acc;
-  //   }, []);
-
-  //   const wholeCharacters = this.getImages(characters);
-  //   this.setState({ characters: wholeCharacters });
-  // }
-
-  // getRealName = (name) => {
-  //   if (name === 'Jimmy McGill') {
-  //     name = 'Saul Goodman';
-  //   }
-
-  //   const splitName = name.split(' ');
-  //   if (splitName[0] === 'Gus') {
-  //     splitName[0] = 'Gustavo';
-  //   } else if (splitName[0] === 'Kim') {
-  //     splitName[0] = 'Kimberly';
-  //   } else if (splitName[0] === 'Hank') {
-  //     splitName[0] = 'Henry'
-  //   } else if (splitName[0] === 'Chuck') {
-  //     splitName[0] = 'Charles'
-  //   } 
-
-  //   const newName = splitName.join(' ');
-  //   return newName;
-  // }
 
   toggleHome = () => {
     this.setState({ isHome: !this.state.isHome });
