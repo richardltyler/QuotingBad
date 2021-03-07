@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../Card/Card';
 import './Characters.css';
 
-const Characters = ({ characters, correctAnswer, getRandomIndex, getWrongAnswer}) => {
+const Characters = ({ characters, correctAnswer, getRandomIndex, getWrongAnswer, makeGuess}) => {
   const correctAuthor = characters.find(char => char.character === correctAnswer);
   const wrongAnswers = characters.filter(char => char.character !== correctAnswer);
   
@@ -15,7 +15,7 @@ const Characters = ({ characters, correctAnswer, getRandomIndex, getWrongAnswer}
   options.splice(randomI, 0, correctAuthor);
 
   const characterCards = options.map((char, i) => {
-    return <Card key={i} character={char} />;
+    return <Card makeGuess={makeGuess} key={i} character={char} />;
   });
 
   return (

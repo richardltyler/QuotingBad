@@ -14,7 +14,8 @@ class Game extends Component {
       characters: this.props.characters,
       pastQuotes: [],
       correctAnswers: 0,
-      isLoading: true,
+      hasGuessed: false,
+      // isLoading: true,
     }
   }
 
@@ -50,12 +51,35 @@ class Game extends Component {
   getQuote = () => {
     const quotes = this.state.quotes;
     const randomQuote = quotes[this.getRandomIndex(quotes)];
+    
+    const filteredQuotes = quotes.filter(quote => quote !== randomQuote);
 
-    this.setState({ currentQuote: randomQuote });
+    this.setState({ quotes: filteredQuotes, currentQuote: randomQuote });
   }
 
   startGame = () => {
     this.setState({ gameOn: true });
+  }
+
+  makeGuess = event => {
+    const guess = event.target.closest('article').id;
+    const correctAnswer = this.state.currentQuote.author
+
+    if (guess === correctAnswer) {
+      this.setState({ correctAnswers: (this.state.correctAnswers + 1) });
+    } 
+
+    this.setState({ pastQuotes: [...this.state.pastQuotes, this.state.currentQuote] });
+    this.setState({ hasGuessed: true });
+    
+    setTimeout(() => {
+      this.switchQuote();
+      this.setState({ hasGuessed: false })
+    }, 5000);
+  }
+
+  switchQuote = () => {
+    this.getQuote();
   }
 
   render() {
@@ -64,7 +88,7 @@ class Game extends Component {
         {!this.state.currentQuote && !this.state.gameOn && <h2>loading...</h2>}
         {!this.state.gameOn && this.state.currentQuote && <Start startGame={this.startGame}/>}
 
-        {this.state.gameOn && this.state.currentQuote && 
+        {this.state.gameOn && this.state.currentQuote && !this.state.hasGuessed && 
           <section className='quote-container'>
             <h2 className='headline'>QUOTE:</h2>
             <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
@@ -72,9 +96,17 @@ class Game extends Component {
               getRandomIndex={this.getRandomIndex} 
               getWrongAnswer={this.getWrongAnswer} 
               correctAnswer={this.state.currentQuote.author} 
-              characters={this.state.characters}/>
+              characters={this.state.characters}
+              makeGuess={this.makeGuess}/>
           </section>
         }
+
+        {this.state.gameOn && this.state.hasGuessed && 
+          <div>
+            <h2>{'Correct'}</h2>
+            <p>It was {this.state.currentQuote.author}!</p>
+          </div>
+          }
       </div>
     )
   }

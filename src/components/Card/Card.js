@@ -1,9 +1,9 @@
 import React from 'react';
 import './Card.css';
 
-const Card = ({ character }) => {
+const Card = ({ character, makeGuess  }) => {
   return (
-    <article className='card hover-states'>
+    <article className='card hover-states' id={character.character} onClick={event => makeGuess(event)}>
       <img 
         className='card-image' 
         src={character.img}
