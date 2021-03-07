@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Footer.css';
 
-const Footer = ({ toggleHome }) => {
+const Footer = ({ goHome, toggleHome, isHome }) => {
   return (
     <footer className='footer'>
       <Link 
@@ -12,6 +12,16 @@ const Footer = ({ toggleHome }) => {
           toggleHome();
         }}
         >About</Link>
+        
+        {!isHome &&
+          <Link 
+            className='home-link'
+            onClick={() => {
+              goHome();
+            }}
+            to='/'
+          >Home</ Link>
+          }
     </footer>
   )
 }

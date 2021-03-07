@@ -14,6 +14,7 @@ class App extends Component {
       error: false,
       isHome: true,
     };
+    this.baseState = this.state;
   }
 
   handleError = (response) => {
@@ -30,7 +31,7 @@ class App extends Component {
   }
 
   goHome = () => {
-    this.setState({ isHome: true });
+    this.setState(this.baseState);
   }
   
   render() {
@@ -38,7 +39,6 @@ class App extends Component {
       <div className="App">
         <Header 
           isHome={this.state.isHome} 
-          toggleHome={this.toggleHome} 
         />
         <main className="main">
             <Route 
@@ -66,7 +66,7 @@ class App extends Component {
             />
 
         </main>
-        <Footer toggleHome={this.toggleHome} />
+        <Footer toggleHome={this.toggleHome} goHome={this.goHome} />
       </div>
     )
   }
