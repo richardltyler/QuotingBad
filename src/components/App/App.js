@@ -21,16 +21,22 @@ class App extends Component {
 
   componentDidMount = () => {
     httpRequests.getAllQuotes()
-      .then(quotes => {
-        // if (quotes )
-        const formattedQuotes = quotes.map(quote => {
-          this.getRealName(quote.author);
-          return { author: this.getRealName(quote.author), quote: quote.quote };
-        });
+      .then(quotes => this.assignStateFromData(quotes))
+      .catch(() => {
+        const error = `Real smooth. Slippin' Jimmy went and got an Error. Try again later or go to About to contact the developers with questions!`;
 
-        this.setState({ quotes: formattedQuotes });
-        this.getCharacters();
-      })
+        this.setState({ error: error });
+      });
+  }
+
+  assignStateFromData = (quotes) => {
+    const formattedQuotes = quotes.map(quote => {
+      this.getRealName(quote.author)
+      return { author: this.getRealName(quote.author), quote: quote.quote }
+    })
+
+    this.setState({ quotes: formattedQuotes });
+    this.getCharacters();
   }
 
   getImages = (characters) => {
