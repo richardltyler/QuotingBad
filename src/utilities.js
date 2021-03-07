@@ -27,13 +27,6 @@ const utilities = {
     return Math.floor(Math.random() * arr.length);
   },
 
-  scoreGame(state) {
-    const score = (state.correctAnswers / state.pastQuotes.length);
-    const scorePercent = (score * 100).toFixed();
-
-    return `${scorePercent}%`;
-  }
-
 }
 
 export default utilities;

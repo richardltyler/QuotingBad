@@ -152,10 +152,18 @@ class Game extends Component {
   render() {
     return (
       <div>
-        {!this.state.gameOn && !this.state.currentQuote && <h2>loading...</h2>}
-        {!this.state.gameOn && this.state.currentQuote && <Start startGame={this.startGame}/>}
+        {!this.state.gameOn 
+          && !this.state.currentQuote && 
+          <h2>loading...</h2>}
 
-        {this.state.gameOn && this.state.currentQuote && !this.state.hasGuessed && this.state.characters && 
+        {!this.state.gameOn 
+          && this.state.currentQuote 
+          && <Start startGame={this.startGame}/>}
+
+        {this.state.gameOn 
+          && this.state.currentQuote 
+          && !this.state.hasGuessed 
+          && this.state.characters && 
           <section className='quote-container'>
             <h2 className='headline'>QUOTE:</h2>
             <h3>{this.state.currentQuote.quote}</h3>
@@ -168,12 +176,13 @@ class Game extends Component {
           </section>
         }
 
-        {this.state.gameOn && this.state.hasGuessed && 
+        {this.state.gameOn 
+          && this.state.hasGuessed && 
           <Turn 
             isCorrect={this.state.guessedCorrect}
             correctAuthor={this.state.currentQuote.author}
             gameOver={this.state.gameOver}
-            scoreGame={() => utilities.scoreGame(this.state)}
+            scoreGame={this.scoreGame}
           />
         }
       </div>

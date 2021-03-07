@@ -10,9 +10,8 @@ const Header = ({ location }) => {
         <span className='logo-block'>Qu</span>oting<br></br>
         <span className='logo-block'>Ba</span>d
       </h1>
-      {location.pathname !== '/' && 
-      <Link className='home-link' to='/'>Home</ Link>
-      }
+      {location.pathname !== '/' 
+        && <Link className='home-link' to='/'>Home</ Link>}
     </header>
   )
 }

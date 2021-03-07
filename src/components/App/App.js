@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <img className='heisenberg-background' src="https://www.pngitem.com/pimgs/m/190-1906199_transparent-heisenberg-clipart-heisenberg-breaking-bad-sketch-hd.png"></img>
+        <img className='heisenberg-background' src="https://www.pngitem.com/pimgs/m/190-1906199_transparent-heisenberg-clipart-heisenberg-breaking-bad-sketch-hd.png" alt='heisenburg sketch'></img>
         <main className="main">
             <Route 
               path='/error'
@@ -48,10 +48,7 @@ class App extends Component {
             <Route
               exact path='/'
               render={() => 
-                <Game 
-                  handleError={this.handleError}
-                />
-              }
+                <Game handleError={this.handleError} />}
             />
         </main>
         <Footer />
