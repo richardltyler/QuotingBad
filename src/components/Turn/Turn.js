@@ -5,16 +5,16 @@ const Turn = (props) => {
   const { isCorrect, correctAuthor, gameOver, scoreGame } = props;
   return (
     <div>
-            <h2>{isCorrect && 'Correct!'}</h2>
-            <h2>{!isCorrect && 'S\'all good man! You\'ll get em next time.'}</h2>
-            <p>It was {correctAuthor}!</p>
-            {gameOver && 
-              <div>
-                <h3>{gameOver && 'Game Over!'}</h3>
-                <p>{gameOver && `You got ${scoreGame()} right`}</p>
-              </div>
-            }
-          </div>
+      <h2>{isCorrect && 'Correct!'}</h2>
+      <h2>{!isCorrect && 'S\'all good man! You\'ll get em next time.'}</h2>
+      <p>It was {correctAuthor}!</p>
+      {gameOver && 
+        <div>
+          <h3>{gameOver && 'Game Over!'}</h3>
+          <p>{gameOver && `You got ${scoreGame()} right`}</p>
+        </div>
+      }
+    </div>
   )
 }
 
