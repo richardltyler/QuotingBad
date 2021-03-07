@@ -185,12 +185,13 @@ class Game extends Component {
         {this.state.gameOn && this.state.currentQuote && !this.state.hasGuessed && this.state.characters && 
           <section className='quote-container'>
             <h2 className='headline'>QUOTE:</h2>
-            <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
+            <h3>{this.state.currentQuote.quote}</h3>
             <Characters 
               getWrongAnswer={this.getWrongAnswer} 
               correctAnswer={this.state.currentQuote.author} 
               characters={this.state.characters}
-              makeGuess={this.makeGuess}/>
+              makeGuess={this.makeGuess}
+            />
           </section>
         }
 
