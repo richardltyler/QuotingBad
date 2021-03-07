@@ -12,7 +12,7 @@ describe('Header Component', () => {
     cy.get('header').should('not.contain', '.home-link')
   });
 
-  it.only('Should have a home button when on the about page', () => {
+  it('Should have a home button when on the about page', () => {
     cy.visit('http://localhost:3000/#/about')
       .get('header a').should('have.class', 'home-link');
   })
