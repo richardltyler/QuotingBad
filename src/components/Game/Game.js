@@ -151,7 +151,7 @@ class Game extends Component {
 
   checkForWin = () => {
     const amountPastQuotes = this.state.pastQuotes.length + 1;
-    if (amountPastQuotes > 1) {
+    if (amountPastQuotes > 9) {
       this.setState({ gameOver: true });
       setTimeout(() => {
         this.setState(this.baseState);
@@ -182,7 +182,7 @@ class Game extends Component {
         {!this.state.gameOn && !this.state.currentQuote && <h2>loading...</h2>}
         {!this.state.gameOn && this.state.currentQuote && <Start startGame={this.startGame}/>}
 
-        {this.state.gameOn && this.state.currentQuote && !this.state.hasGuessed && 
+        {this.state.gameOn && this.state.currentQuote && !this.state.hasGuessed && this.state.characters && 
           <section className='quote-container'>
             <h2 className='headline'>QUOTE:</h2>
             <h3>{this.state.currentQuote && this.state.currentQuote.quote}</h3>
