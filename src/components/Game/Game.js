@@ -4,6 +4,7 @@ import Start from '../Start/Start';
 import Characters from '../Characters/Characters';
 import Turn from '../Turn/Turn';
 import httpRequests from '../../httpRequests.js';
+import utilities from '../../utilities.js';
 import './Game.css';
 
 class Game extends Component {
@@ -38,30 +39,10 @@ class Game extends Component {
 
   assignStateFromData = (quotes) => {
     const formattedQuotes = quotes.map(quote => {
-      return { author: this.getRealName(quote.author), quote: quote.quote }
+      return { author: utilities.getRealName(quote.author), quote: quote.quote }
     })
 
     this.setState({ quotes: formattedQuotes });
-  }
-
-  getRealName = (name) => {
-    if (name === 'Jimmy McGill') {
-      name = 'Saul Goodman';
-    }
-
-    const splitName = name.split(' ');
-    if (splitName[0] === 'Gus') {
-      splitName[0] = 'Gustavo';
-    } else if (splitName[0] === 'Kim') {
-      splitName[0] = 'Kimberly';
-    } else if (splitName[0] === 'Hank') {
-      splitName[0] = 'Henry'
-    } else if (splitName[0] === 'Chuck') {
-      splitName[0] = 'Charles'
-    } 
-
-    const newName = splitName.join(' ');
-    return newName;
   }
 
   getCharacters = () => {
