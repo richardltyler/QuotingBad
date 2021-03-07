@@ -1,11 +1,12 @@
 import { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import httpRequests from '../../httpRequests.js';
 import './App.css';
 import Header from '../Header/Header';
 import Game from '../Game/Game';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
+import Error from '../Error/Error';
 
 class App extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class App extends Component {
     this.state = {
       quotes: [],
       characters: [],
+      error: '',
       isHome: true,
     };
   }
@@ -34,7 +36,11 @@ class App extends Component {
       const newCharacter = {}
       const formattedName = this.formatName(char)
       httpRequests.getCharacters(formattedName)
-        .then()
+        .then(response => {
+          if (response.includes('error')) {
+            this.setState({ error: response });
+          }
+        })
         .then(image => newCharacter.img = image)
 
       newCharacter.character = char;
@@ -101,8 +107,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header isHome={this.state.isHome} toggleHome={this.toggleHome} endGame={this.endGame}/>
+        <Header 
+          isHome={this.state.isHome} 
+          toggleHome={this.toggleHome} 
+        />
         <main className="main">
+            <Route 
+              path='/error'
+              render={() => <Error error={this.state.error} />}
+            />
+
+            {this.state.error && 
+              <Redirect
+                to='/error'
+              /> }
+
             <Route 
               path='/about'
               render={() => <About />}
@@ -118,6 +137,7 @@ class App extends Component {
                 />
               }
             />
+
         </main>
         <Footer toggleHome={this.toggleHome} />
       </div>
