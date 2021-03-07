@@ -201,6 +201,7 @@ class Game extends Component {
             isCorrect={this.state.guessedCorrect}
             correctAuthor={this.state.currentQuote.author}
             gameOver={this.state.gameOver}
+            scoreGame={this.scoreGame}
           />
         }
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Turn = (props) => {
-  const { isCorrect, correctAuthor, gameOver } = props;
+  const { isCorrect, correctAuthor, gameOver, scoreGame } = props;
   return (
     <div>
             <h2>{isCorrect && 'Correct!'}</h2>
@@ -10,8 +10,8 @@ const Turn = (props) => {
             <p>It was {correctAuthor}!</p>
             {gameOver && 
               <div>
-                <h3>{this.state.gameOver && 'Game Over!'}</h3>
-                <p>{this.state.gameOver && `You got ${this.scoreGame()} right`}</p>
+                <h3>{gameOver && 'Game Over!'}</h3>
+                <p>{gameOver && `You got ${scoreGame()} right`}</p>
               </div>
             }
           </div>
