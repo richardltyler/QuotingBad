@@ -31,22 +31,19 @@ class Game extends Component {
 
   getData = () => {
     httpRequests.getAllQuotes()
-      .then(quotes => this.assignQuotesFromData(quotes))
-      .then(() => this.getCharacters())
+      .then(quotes => this.assignStateFromData(quotes))
       .then(() => this.getQuote())
       .catch(() => this.props.handleError('error'));
   }
 
-  assignQuotesFromData = (quotes) => {
-    const formattedQuotes = quotes.map(quote => {
-      return { id: quote.quote_id, author: utilities.getRealName(quote.author), quote: quote.quote }
-    })
+  assignStateFromData = (quotes) => {
+    const characters = this.getCharacters(quotes)
 
-    this.setState({ quotes: formattedQuotes });
+    this.setState({ quotes: quotes, characters: characters });
   }
 
-  getCharacters = () => {
-    const characters = this.state.quotes.reduce((acc, quote) => {
+  getCharacters = (quotes) => {
+    const characters = quotes.reduce((acc, quote) => {
       if (!acc.includes(quote.author)) {
         acc.push(quote.author);
       }
@@ -54,29 +51,12 @@ class Game extends Component {
       return acc;
     }, []);
 
-    const wholeCharacters = this.getImages(characters);
-    this.setState({ characters: wholeCharacters });
-  }
-
-  getImages = (characters) => {
-    const wholeChars = characters.map(char => {
-      const newCharacter = {}
-      const formattedName = utilities.formatName(char);
-      httpRequests.getCharacters(formattedName)
-        .then(response => this.props.handleError(response))
-        .then(image => newCharacter.img = image)
-
-      newCharacter.character = char;
-
-      return newCharacter;
-    }, {});
-
-    return wholeChars;
+    return characters;
   }
 
   getWrongAnswer = (answers, wrongAnswer) => {
     if (wrongAnswer) {
-      answers = answers.filter(char => char.character !== wrongAnswer.character);
+      answers = answers.filter(char => char !== wrongAnswer.character);
     }
       
     return answers[utilities.getRandomIndex(answers)];

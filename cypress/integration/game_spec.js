@@ -28,7 +28,7 @@ describe('Game Component', () => {
   });
 
   it('Should be able to make a guess', () => {
-    cy.get('article #Saul Goodman').click();
-    cy.get('h2')
+    cy.get('article[id="Saul Goodman"]').click();
+    cy.get('h2').should('contain', 'Correct!');
   })
 })
