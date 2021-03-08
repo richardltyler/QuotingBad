@@ -1,12 +1,5 @@
 describe('Game Component', () => {
   beforeEach(() => {
-    cy.fixture('characters.json')
-      .then(response => {
-        cy.intercept('https://www.breakingbadapi.com/api/characters?name=Saul+Goodman', {
-          body: response,
-        })
-      });
-
     cy.fixture('quotes.json')
       .then(response => {
         cy.intercept('https://www.breakingbadapi.com/api/quotes', {

@@ -1,6 +1,13 @@
 describe('Error Component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/#/error');
+    cy.fixture('quotes.json')
+      .then(() => {
+        cy.intercept('https://www.breakingbadapi.com/api/quotes', {
+          body: "error",
+        })
+      });
+
+    cy.visit('http://localhost:3000/#/');
   });
 
   it('Should be on the error page URL', () => {
