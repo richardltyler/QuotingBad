@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Start.css';
 
-const Start = (props) => {
-  const { startGame } = props;
+const Start = ({ startGame }) => {
 
   return (
     <section  className="rules-container">
