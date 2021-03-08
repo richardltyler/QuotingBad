@@ -7,8 +7,4 @@ describe('Card Component', () => {
   it('Should have a headline', () => {
     cy.get('article').children('h4').should('be.visible');
   });
-
-  it('Should have an image', () => {
-    cy.get('article').children('img').should('be.visible');
-  });
 })
