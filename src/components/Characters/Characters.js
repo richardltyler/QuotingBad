@@ -31,6 +31,5 @@ export default Characters;
 Characters.propTypes = {
   characters: PropTypes.array.isRequired,
   correctAnswer: PropTypes.string.isRequired, 
-  // getWrongAnswer: PropTypes.func.isRequired, 
   makeGuess: PropTypes.func.isRequired,
 }

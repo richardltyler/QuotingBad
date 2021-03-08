@@ -53,21 +53,16 @@ class Game extends Component {
     return characters;
   }
 
-  // getWrongAnswer = (answers, wrongAnswer) => {
-  //   if (wrongAnswer) {
-  //     answers = answers.filter(char => char !== wrongAnswer.character);
-  //   }
-      
-  //   return answers[utilities.getRandomIndex(answers)];
-  // }
-
   getQuote = () => {
     const quotes = this.state.quotes;
     const randomQuote = quotes[utilities.getRandomIndex(quotes)];
     
     const filteredQuotes = quotes.filter(quote => quote !== randomQuote);
 
-    this.setState({ quotes: filteredQuotes, currentQuote: randomQuote });
+    this.setState({ 
+      quotes: filteredQuotes, 
+      currentQuote: randomQuote 
+    });
   }
 
   startGame = () => {
@@ -79,22 +74,30 @@ class Game extends Component {
     const correctAnswer = this.state.currentQuote.author
 
     if (guess === correctAnswer) {
-      this.setState({ correctAnswers: (this.state.correctAnswers + 1), guessedCorrect: true });
+      this.setState({ 
+        correctAnswers: (this.state.correctAnswers + 1), guessedCorrect: true 
+      });
     } 
 
-    this.setState({ pastQuotes: [...this.state.pastQuotes, this.state.currentQuote], hasGuessed: true });
+    this.setState({ 
+      pastQuotes: [...this.state.pastQuotes, 
+      this.state.currentQuote], 
+      hasGuessed: true 
+    });
     
-    this.checkForWin();
+    this.checkForEnd();
   }
 
-  checkForWin = () => {
+  checkForEnd = () => {
     const amountPastQuotes = this.state.pastQuotes.length + 1;
     if (amountPastQuotes > 9) {
       this.setState({ gameOver: true });
+
       setTimeout(() => {
         this.setState(this.baseState);
         this.getData();
       }, 5000);
+      
     } else {
       this.switchQuote();
     }
@@ -103,7 +106,10 @@ class Game extends Component {
   switchQuote = () => {
     setTimeout(() => {
       this.getQuote();
-      this.setState({ hasGuessed: false, guessedCorrect: false });
+      this.setState({ 
+        hasGuessed: false, 
+        guessedCorrect: false 
+      });
     }, 3000);
   }
 
@@ -134,7 +140,6 @@ class Game extends Component {
             <h3>{this.state.currentQuote.quote}</h3>
             <Characters 
               key={this.state.currentQuote.id}
-              // getWrongAnswer={this.getWrongAnswer} 
               correctAnswer={this.state.currentQuote.author} 
               characters={this.state.characters}
               makeGuess={this.makeGuess}
