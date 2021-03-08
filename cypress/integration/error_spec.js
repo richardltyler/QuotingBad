@@ -3,7 +3,7 @@ describe('Error Component', () => {
     cy.fixture('quotes.json')
       .then(() => {
         cy.intercept('https://www.breakingbadapi.com/api/quotes', {
-          body: "error",
+          body: 'error',
         })
       });
 
