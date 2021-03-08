@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className='footer'>
       <Link to='/about' >About</Link>  
     </footer>
-  )
+  );
 }
 
 export default Footer;
