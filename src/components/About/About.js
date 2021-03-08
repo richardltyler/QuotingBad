@@ -12,7 +12,7 @@ const About = () => {
         <a  className='dev-li' href='https://www.linkedin.com/in/richardltyler/'>Richard's LinkedIn</a>
       </article>
       <h3>Context</h3>
-      <p className="answer">
+      <p className="why">
         This app was created by Richard Tyler to practice using React and React Router with Asynchronous Javascript. 
       </p>
       <h3>Technologies</h3>
