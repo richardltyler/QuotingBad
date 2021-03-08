@@ -11,7 +11,7 @@ const Turn = (props) => {
       {gameOver && 
         <div>
           <h3>{gameOver && 'Game Over!'}</h3>
-          <p>{gameOver && `You got ${scoreGame()} right`}</p>
+          <p className="score">{gameOver && `You got ${scoreGame()} right`}</p>
         </div>
       }
     </section>
