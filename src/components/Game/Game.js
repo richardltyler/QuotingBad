@@ -39,7 +39,7 @@ class Game extends Component {
 
   assignQuotesFromData = (quotes) => {
     const formattedQuotes = quotes.map(quote => {
-      return { author: utilities.getRealName(quote.author), quote: quote.quote }
+      return { id: quote.quote_id, author: utilities.getRealName(quote.author), quote: quote.quote }
     })
 
     this.setState({ quotes: formattedQuotes });
@@ -84,6 +84,7 @@ class Game extends Component {
 
   getQuote = () => {
     const quotes = this.state.quotes;
+    console.log(this.state.quotes)
     const randomQuote = quotes[utilities.getRandomIndex(quotes)];
     
     const filteredQuotes = quotes.filter(quote => quote !== randomQuote);
@@ -143,7 +144,7 @@ class Game extends Component {
           <h2>loading...</h2>}
 
         {!this.state.gameOn 
-          && this.state.currentQuote 
+          && this.state.currentQuote
           && <Start startGame={this.startGame}/>}
 
         {this.state.gameOn 
@@ -154,6 +155,7 @@ class Game extends Component {
             <h2 className='headline'>QUOTE:</h2>
             <h3>{this.state.currentQuote.quote}</h3>
             <Characters 
+              key={this.state.currentQuote.id}
               getWrongAnswer={this.getWrongAnswer} 
               correctAnswer={this.state.currentQuote.author} 
               characters={this.state.characters}
