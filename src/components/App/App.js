@@ -26,14 +26,14 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <Header />
         <img 
           className='heisenberg-background' 
-          src="https://www.pngitem.com/pimgs/m/190-1906199_transparent-heisenberg-clipart-heisenberg-breaking-bad-sketch-hd.png" 
+          src='https://www.pngitem.com/pimgs/m/190-1906199_transparent-heisenberg-clipart-heisenberg-breaking-bad-sketch-hd.png' 
           alt='heisenburg sketch'>
         </img>
-        <main className="main">
+        <main className='main'>
             <Route 
               path='/error'
               render={() => <Error error={this.state.error} />}
