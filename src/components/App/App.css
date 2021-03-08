@@ -50,7 +50,7 @@ a {
 
 .heisenberg-background {
   position: absolute;
-  margin-left: -400px;
+  margin-left: -300px;
   margin-top: 100px;
   height: 600px;
   z-index: -10;
@@ -64,6 +64,12 @@ a:visited {
 @media screen and (max-width: 850px) {
   .headline {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .heisenberg-background {
+    margin-left: -400px;
   }
 }
 
