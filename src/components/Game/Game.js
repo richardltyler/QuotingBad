@@ -137,7 +137,7 @@ class Game extends Component {
           && this.state.characters && 
           <section className='quote-container'>
             <h2 className='headline'>QUOTE:</h2>
-            <h3>{this.state.currentQuote.quote}</h3>
+            <h3 className='quote'>{this.state.currentQuote.quote}</h3>
             <Characters 
               key={this.state.currentQuote.id}
               correctAnswer={this.state.currentQuote.author} 
