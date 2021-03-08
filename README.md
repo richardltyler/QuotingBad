@@ -63,3 +63,5 @@ To add more features to this project, or to simply view the code in action...
 The link to the spec sheet that guided this project: [Spec](https://frontend.turing.io/projects/module-3/niche-audience.html)
 
 The link to the API used for the quotes: [API](https://breakingbadapi.com/documentation)
+
+Go play the game here: [Game Link](https://richardltyler.github.io/quoting-bad/#/)
