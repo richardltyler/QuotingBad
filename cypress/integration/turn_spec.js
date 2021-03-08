@@ -12,7 +12,7 @@ describe('Turn Component', () => {
     cy.get('button').click();
   });
 
-  it('Should be able to make a guess', () => {
+  it('Should tell you the correct answer and if you got it right', () => {
     cy.get('article[id="Saul Goodman"]').click();
     cy.get('h2').should('contain', 'Correct!');
     cy.get('p').should('contain', 'It was Saul Goodman!')
