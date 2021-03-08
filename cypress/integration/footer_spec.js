@@ -1,4 +1,4 @@
-describe("Footer Component", () => {
+describe('Footer Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/#/');
   });

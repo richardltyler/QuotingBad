@@ -15,7 +15,7 @@ const Turn = (props) => {
         </div>
       }
     </div>
-  )
+  );
 }
 
 export default Turn;

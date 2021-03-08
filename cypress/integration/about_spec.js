@@ -1,4 +1,4 @@
-describe("About Component", () => {
+describe('About Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/#/')
       .get('footer a').click();
