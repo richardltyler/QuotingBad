@@ -36,7 +36,7 @@ class App extends Component {
         <main className='main'>
             <Route 
               path='/error'
-              render={() => <Error error={this.state.error} />}
+              render={() => <Error />}
             />
 
             {this.state.error && 
