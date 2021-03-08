@@ -18,7 +18,7 @@ To add more features to this project, or to simply view the code in action...
 1. Clone this repo (or first fork it and then clone) using `git clone [THIS REPO'S SSH KEY] [OPTIONAL DIRECTORY NAME]` inside of your terminal.  
 2. `cd` into that directory.  
 3. Install any necessary dependencies using `npm install`.
-4. Enter `npm run serve` to run the app on a local server or open the code in your text editor.  
+4. Enter `npm start` to run the app on a local server or open the code in your text editor.  
 5. The app should open automatically, but you can also navigate to `http://localhost:8080/` to view the app as well.
 
 ## Additional Features
