@@ -14,7 +14,6 @@ class Game extends Component {
       quotes: [],
       characters: [],
       currentQuote: {},
-      currentOptions: [],
       pastQuotes: [],
       correctAnswers: 0,
       gameOn: false,
@@ -54,17 +53,16 @@ class Game extends Component {
     return characters;
   }
 
-  getWrongAnswer = (answers, wrongAnswer) => {
-    if (wrongAnswer) {
-      answers = answers.filter(char => char !== wrongAnswer.character);
-    }
+  // getWrongAnswer = (answers, wrongAnswer) => {
+  //   if (wrongAnswer) {
+  //     answers = answers.filter(char => char !== wrongAnswer.character);
+  //   }
       
-    return answers[utilities.getRandomIndex(answers)];
-  }
+  //   return answers[utilities.getRandomIndex(answers)];
+  // }
 
   getQuote = () => {
     const quotes = this.state.quotes;
-    console.log(this.state.quotes)
     const randomQuote = quotes[utilities.getRandomIndex(quotes)];
     
     const filteredQuotes = quotes.filter(quote => quote !== randomQuote);
@@ -136,7 +134,7 @@ class Game extends Component {
             <h3>{this.state.currentQuote.quote}</h3>
             <Characters 
               key={this.state.currentQuote.id}
-              getWrongAnswer={this.getWrongAnswer} 
+              // getWrongAnswer={this.getWrongAnswer} 
               correctAnswer={this.state.currentQuote.author} 
               characters={this.state.characters}
               makeGuess={this.makeGuess}

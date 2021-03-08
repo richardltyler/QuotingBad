@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import utilities from '../../utilities.js';
 import Card from '../Card/Card';
 import './Characters.css';
 
-const Characters = ({ characters, correctAnswer, getWrongAnswer, makeGuess }) => {
+const Characters = ({ characters, correctAnswer, makeGuess }) => {
   const wrongAnswers = characters.filter(char => char !== correctAnswer);
   
-  const wrongAnswer1 = getWrongAnswer(wrongAnswers);
-  const wrongAnswer2 = getWrongAnswer(wrongAnswers, wrongAnswer1);
+  const wrongAnswer1 = utilities.getWrongAnswer(wrongAnswers);
+  const wrongAnswer2 = utilities.getWrongAnswer(wrongAnswers, wrongAnswer1);
   const options = [wrongAnswer1, wrongAnswer2];
-  console.log(wrongAnswer2)
   
   const randomI = Math.floor(Math.random() * 3);
   
@@ -31,6 +31,6 @@ export default Characters;
 Characters.propTypes = {
   characters: PropTypes.array.isRequired,
   correctAnswer: PropTypes.string.isRequired, 
-  getWrongAnswer: PropTypes.func.isRequired, 
+  // getWrongAnswer: PropTypes.func.isRequired, 
   makeGuess: PropTypes.func.isRequired,
 }
