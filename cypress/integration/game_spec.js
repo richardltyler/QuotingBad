@@ -25,7 +25,7 @@ describe('Game Component', () => {
     cy.get('h2').should('contain', 'Correct!');
   })
 
-  it.only('Should be able to finish the game', () => {
+  it('Should be able to finish the game', () => {
     for (var i = 0; i < 10; i++) {
       cy.get('article[id="Saul Goodman"]').click();
     }
