@@ -137,7 +137,7 @@ class Game extends Component {
 
   render() {
     return (
-      <div>
+      <section>
         {!this.state.gameOn 
           && !this.state.currentQuote && 
           <h2>loading...</h2>}
@@ -171,7 +171,7 @@ class Game extends Component {
             scoreGame={this.scoreGame}
           />
         }
-      </div>
+      </section>
     )
   }
 }

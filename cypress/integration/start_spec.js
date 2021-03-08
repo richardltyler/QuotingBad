@@ -1,7 +1,7 @@
 describe('Start Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/#/');
-  }) ;
+  });
 
   it('Should be at the home url', () => {
     cy.url().should('eq', 'http://localhost:3000/#/');

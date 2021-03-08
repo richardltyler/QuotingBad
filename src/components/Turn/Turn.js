@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Turn = (props) => {
   const { isCorrect, correctAuthor, gameOver, scoreGame } = props;
   return (
-    <div>
+    <section>
       <h2>{isCorrect && 'Correct!'}</h2>
       <h2>{!isCorrect && 'S\'all good man! You\'ll get em next time.'}</h2>
       <p>It was {correctAuthor}!</p>
@@ -14,7 +14,7 @@ const Turn = (props) => {
           <p>{gameOver && `You got ${scoreGame()} right`}</p>
         </div>
       }
-    </div>
+    </section>
   );
 }
 
