@@ -1,8 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import './Error.css';
 
-// const Error = ({ error }) => {
 const Error = () => {
   return (
     <section>
@@ -13,7 +11,3 @@ const Error = () => {
 }
 
 export default Error;
-
-// Error.propTypes = {
-//   error: PropTypes.string.isRequired,
-// }

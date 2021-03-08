@@ -2,7 +2,11 @@ describe("About Component", () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/#/')
       .get('footer a').click();
-  })
+  });
+
+  it('Should navigate to the about URL', () => {
+    cy.url().should('contain', '/about');
+  });
 
   it('Should have a heading', () => {
     cy.get('h2').should('contain', 'Created by')
