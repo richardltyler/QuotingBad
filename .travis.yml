@@ -1,11 +1,17 @@
 language: node_js
 node_js:
-  - "node"
+- node
 notifications:
   email: false
-cache: 
-  directories: 
-    - ~/.npm
-    - ~/.cache
-  override: 
-    - npm ci
+cache:
+  directories:
+  - "~/.npm"
+  - "~/.cache"
+  override:
+  - npm ci
+deploy:
+  provider: heroku
+  api_key:
+    secure: JsHUJrnzjU+wOmLbW0/weYBEKPIQzvpGZo0dcvA/BxK2rlOncdBaVlmj0CDKWB6G0Xi2xEIrJsy/o3NupqOQlSNx1fBaxxd4OJh4R2ud0HR0aL3/97ho86ADTuFecHa0qi6iX+7bIR4MGIKQq9ZTV3HuNXJN7BQ90X51F0ZWoxmAxO26dF2j2yAUCpOmzt56devw5gqfEMdP5xDVT7sr4dBwJCgYuJ+VEBHU4/YX9S9dwyDqU5NVCJ+G5sk8aMRm0wG49fNZFWEyUGa3euzxEzPKWmcYvR6/XybEiPdK0F1q6tXp7q5kaug8HlcKnNkIgsOyMsmoRvG+XrS3rKuu9PU+hrFC365OcsdG9hBuRhj8+DDlJjGqq+nK3vzUBpuy5cBiJgkzntoY2Mv/RKUQ2YxXC0N1UGnduDjsbW/2PGKGa3iCKsHTnxgkfW33tj+s2BWoA47Sgxhe/69lfer42su/ZozQiN14Bo3wEKosQ+TQ++0zNnG8IlNRco3iZKk3UnddituU05G2Stk/J0x7uQsnfjTOnJ7zJF74/ikULKwb14cMTU8SS6n/jgS4dA3y+qvSXIVF5i7AhWa5KbpQ9YXWJxjwJEDUd482kwmSh8q4bE8kQ1+BEQn0Q6S7aI/yB4mRJ/+D5cf1tAJ6gCgl2e3JGKqEiejqy/iMej5LMqA=
+  app: quoting-bad
+  skip_cleanup: true
