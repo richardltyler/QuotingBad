@@ -1,0 +1,21 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=1
+END=878
+title=Game Component Should display a quote
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=null
+title=Game Component Should display 3 cards
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=null
+title=Game Component Should be able to make a guess
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=null
+title=Game Component Should be able to finish the game
