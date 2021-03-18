@@ -12,7 +12,7 @@ describe('App Component', () => {
   });
 
   it('Should have a background image', () => {
-    cy.get('img').should('have.attr', 'src', 'https://www.pngitem.com/pimgs/m/190-1906199_transparent-heisenberg-clipart-heisenberg-breaking-bad-sketch-hd.png');
+    cy.get('img').should('have.attr', 'src', '/static/media/heisenberg.a7b9e7d2.png');
   });
 
   it('Should display a component at any url', () => {
