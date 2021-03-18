@@ -6,6 +6,7 @@ import Game from '../Game/Game';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
 import Error from '../Error/Error';
+import heisenburg from '../assets/heisenberg.png';
 
 class App extends Component {
   constructor() {
@@ -30,7 +31,8 @@ class App extends Component {
         <Header />
         <img 
           className='heisenberg-background' 
-          src='https://www.pngitem.com/pimgs/m/190-1906199_transparent-heisenberg-clipart-heisenberg-breaking-bad-sketch-hd.png' 
+          src={heisenburg} 
+          
           alt='heisenburg sketch'>
         </img>
         <main className='main'>
