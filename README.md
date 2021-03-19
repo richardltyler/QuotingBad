@@ -64,4 +64,4 @@ The link to the spec sheet that guided this project: [Spec](https://frontend.tur
 
 The link to the API used for the quotes: [API](https://breakingbadapi.com/documentation)
 
-Go play the game here: [Game Link](https://richardltyler.github.io/quoting-bad/#/)
+Go play the game here: [Game Link](https://quoting-bad.herokuapp.com/#/)
