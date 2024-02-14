@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre');
+@import url("https://fonts.googleapis.com/css2?family=Averia+Serif+Libre");
 
 .App {
-  color: #15493C;
+  color: #15493c;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 2fr 15fr 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     "header"
     "main"
     "footer";
@@ -14,10 +14,10 @@
 
 header {
   grid-area: header;
-} 
+}
 
 main {
-  grid-area: main
+  grid-area: main;
 }
 
 footer {
@@ -30,12 +30,12 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Averia Serif Libre';
+  font-family: "Averia Serif Libre";
   text-align: center;
 }
 
 .headline {
-  font-size: 35px;
+  font-size: 2rem;
 }
 
 .hover-states:hover {
@@ -44,7 +44,7 @@ footer {
 }
 
 a {
-  color: #15493C;
+  color: #15493c;
   margin: 1rem;
 }
 
@@ -72,5 +72,3 @@ a:visited {
     margin-left: -400px;
   }
 }
-
-
