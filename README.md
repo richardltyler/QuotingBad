@@ -1,6 +1,12 @@
 # Quoting Bad
 Turing Mod 3 Niche Audience Project
 
+<!--     <aside style="color: red">Yeah, the public api I used for this is...no longer with us. I guess thats the universe challenging me to remake the api myself! <br></br> Stay tuned.</aside> -->
+
+
+> :warning: **Yeah, the public api I used for this is...no longer with us.** <br></br> I guess thats the universe challenging me to remake the api myself! Stay tuned.
+<!--     <p style="color:blue;font-size:46px;">hello</p> -->
+    
 ## Overview
 
 "Quoting Bad" is a React application built by [Richard Tyler](https://github.com/richardltyler/) from the [Turing](turing.io) School of Software and Design. The app was built for people who need to brush up on their Breaking Bad and Better Call Saul quotes. Richard created this app to practice and improve his capabilities with React and Cypress.
