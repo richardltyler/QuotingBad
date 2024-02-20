@@ -1,7 +1,7 @@
 const httpRequests = {
   getAllQuotes() {
-    return fetch("https://api.breakingbadquotes.xyz/v1/quotes/10").then((res) =>
-      res.json()
+    return fetch("https://quoting-bad-api.onrender.com/api/v1/quotes").then(
+      (res) => res.json()
     );
   },
   getCharacters(character) {

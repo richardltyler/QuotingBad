@@ -4,11 +4,11 @@ const utilities = {
   },
   getWrongAnswer(answers, wrongAnswer) {
     if (wrongAnswer) {
-      answers = answers.filter(char => char !== wrongAnswer);
+      answers = answers.filter((char) => char !== wrongAnswer);
     }
-    
+
     return answers[this.getRandomIndex(answers)];
-  }
-}
+  },
+};
 
 export default utilities;

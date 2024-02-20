@@ -1,12 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import utilities from '../../utilities.js';
-import Card from '../Card/Card';
-import './Characters.css';
+import React from "react";
+import PropTypes from "prop-types";
+import utilities from "../../utilities.js";
+import Card from "../Card/Card";
+import "./Characters.css";
 
 const Characters = ({ characters, correctAnswer, makeGuess }) => {
-  const wrongAnswers = characters.filter(char => char !== correctAnswer);
-  
+  const wrongAnswers = characters.filter(
+    (char) => char.toUpperCase() !== correctAnswer.toUpperCase()
+  );
+
   const wrongAnswer1 = utilities.getWrongAnswer(wrongAnswers);
   const wrongAnswer2 = utilities.getWrongAnswer(wrongAnswers, wrongAnswer1);
   const options = [wrongAnswer1, wrongAnswer2];
@@ -20,11 +22,11 @@ const Characters = ({ characters, correctAnswer, makeGuess }) => {
   });
 
   return (
-    <section className='cards-container'>
-        {correctAnswer && characters && characterCards}
+    <section className="cards-container">
+      {correctAnswer && characters && characterCards}
     </section>
   );
-}
+};
 
 export default Characters;
 
@@ -32,4 +34,4 @@ Characters.propTypes = {
   characters: PropTypes.array.isRequired,
   correctAnswer: PropTypes.string.isRequired, 
   makeGuess: PropTypes.func.isRequired,
-}
+};
